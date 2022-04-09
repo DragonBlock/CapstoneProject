@@ -7,6 +7,9 @@ using System.Data.OleDb;
 
 namespace CapstoneProject
 {
+    // Enums for Item & Account type indicators
+    public enum ItemType { Main, Side, Drink }
+    public enum AccountType { Customer, Employee }
     public class DatabaseAccessor
     {
         // Declare connection
@@ -20,7 +23,7 @@ namespace CapstoneProject
             con = new OleDbConnection();
         }
 
-        // Connection Method
+        // Connection method
         public void ConnectToDatabase(string path)
         {
             con.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;" +
@@ -28,7 +31,26 @@ namespace CapstoneProject
             con.Open();
         }
 
-        public void GetMenuImage()
+        // Destructor
+        ~DatabaseAccessor()
+        {
+            DisconnectFromDatabase();
+            con.Dispose();
+        }
+
+        // Disconnection method
+        public void DisconnectFromDatabase()
+        {
+            con.Close();
+        }
+
+
+        public void GetItemDetails(ItemType type)
+        {
+
+        }
+
+        public void GetItemImage(ItemType type)
         {
 
         }
@@ -53,12 +75,32 @@ namespace CapstoneProject
 
         }
 
-        public void ValidateLogin()
+        public bool ValidateNewAccount()
+        {
+
+        }
+
+        public void CreateAccount()
+        {
+
+        }
+
+        public bool ValidateLogin()
+        {
+
+        }
+
+        public void GetAccountDetails()
         {
 
         }
 
         public void PlaceOrder()
+        {
+
+        }
+
+        public void ProcessPayment()
         {
 
         }
@@ -79,6 +121,11 @@ namespace CapstoneProject
         }
 
         public void AddSide()
+        {
+
+        }
+
+        public void GetListOfOrders()
         {
 
         }
