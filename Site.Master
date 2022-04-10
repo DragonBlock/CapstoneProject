@@ -129,7 +129,7 @@
                     <asp:Button ID="btnCart" Text="See Cart" runat="server" UseSubmitBehavior="False" />
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" UseSubmitBehavior="False" />
                     <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" UseSubmitBehavior="False" />
-                    <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" UseSubmitBehavior="False" OnClick="btnLogin_Click" />
+                    <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" UseSubmitBehavior="False" OnClick="btnSignUp_Click" />
                     <asp:Button ID="btnAccount0" runat="server" Text="View Account" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />
                     <asp:Button ID="btnAdmin0" runat="server" Text="Admin" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />
                     <asp:Button ID="btnLogOut" runat="server" Text="Log Out" UseSubmitBehavior="False" OnClick="btnLogOut_Click" />

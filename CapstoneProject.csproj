@@ -132,6 +132,7 @@
   <ItemGroup>
     <Content Include="Checkout.aspx" />
     <Content Include="FoodOrderingDB.mdb" />
+    <Content Include="SignUp.aspx" />
     <Content Include="MenuDrinks.aspx" />
     <Content Include="MenuSides.aspx" />
     <Content Include="MenuMeals.aspx" />
@@ -191,6 +192,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Admin.aspx" />
     <Content Include="ViewAccount.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -204,6 +206,13 @@
     </Compile>
     <Compile Include="Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuDrinks.aspx.cs">
       <DependentUpon>MenuDrinks.aspx</DependentUpon>
@@ -252,6 +261,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewAccount.aspx.cs">
       <DependentUpon>ViewAccount.aspx</DependentUpon>

@@ -457,7 +457,7 @@ namespace CapstoneProject
                 dateVal = ", @PayDate";
             }
 
-            string query = "INSERT INTO Order (Customer_ID, Order_SubTotal, "+
+            string query = "INSERT INTO OrderTable (Customer_ID, Order_SubTotal, " +
                 "Order_Total, Order_Status, Order_Date, Payment_Info_ID, " + date + ") " +
                     "VALUES (@CustID, @SubTotal, @Total, @Status, @Date, @PaymentID" + dateVal + ")";
             OleDbCommand cmd = new OleDbCommand(query, con);
@@ -472,7 +472,7 @@ namespace CapstoneProject
 
             int worked = cmd.ExecuteNonQuery();
 
-            query = "SELECT Order_ID FROM Order WHERE Customer_ID = @CustID AND Order_Date = @Date";
+            query = "SELECT Order_ID FROM OrderTable WHERE Customer_ID = @CustID AND Order_Date = @Date";
             cmd.CommandText = query;
 
             int orderID = -1;
@@ -682,11 +682,11 @@ namespace CapstoneProject
 
             DataTable ordersTable;
 
-            string query = "SELECT Customer.Customer_ID, Customer.Customer_First_Name, Customer.Customer_Last_Name, Order.Order_Total, " +
-                "Order.Order_Status, Order.Order_Date, Order.Order_Payment_Date, Order.Order_Processed_By_Employee, " +
-                "Order.Order_Payment_Amount, PaymentInfo.Info_Was_Cash, PaymentInfo.Info_Paid_In_Full " +
-                "FROM ((Order INNER JOIN Customer ON Order.Customer_ID = Customer.Customer_ID) "+ 
-                "INNER JOIN PaymentInfo ON Order.Payment_Info_ID = PaymentInfo.Payment_Info_ID)";
+            string query = "SELECT Customer.Customer_ID, Customer.Customer_First_Name, Customer.Customer_Last_Name, OrderTable.Order_Total, " +
+                "OrderTable.Order_Status, OrderTable.Order_Date, OrderTable.Order_Payment_Date, OrderTable.Order_Processed_By_Employee_ID, " +
+                "OrderTable.Order_Payment_Amount, PaymentInfo.Info_Was_Cash, PaymentInfo.Info_Paid_In_Full " +
+                "FROM (OrderTable INNER JOIN Customer ON Customer.Customer_ID = OrderTable.Customer_ID) " +
+                "INNER JOIN PaymentInfo ON PaymentInfo.Payment_Info_ID = OrderTable.Payment_Info_ID";
             OleDbCommand cmd = new OleDbCommand(query, con);
 
             using (OleDbDataReader reader = cmd.ExecuteReader())

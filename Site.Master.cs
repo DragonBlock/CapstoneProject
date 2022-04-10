@@ -73,28 +73,33 @@ namespace CapstoneProject
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
         {
-            Server.Transfer("About.aspx");
+            Response.Redirect("About.aspx");
         }
 
 
         protected void btnMenu_Click(System.Object sender, System.EventArgs e)
         {
-            Server.Transfer("MenuMeals.aspx");
+            Response.Redirect("MenuMeals.aspx");
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Default.aspx");
+            Response.Redirect("Default.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Login.aspx");
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SignUp.aspx");
         }
 
         protected void Contactbtn_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Contact.aspx");
+            Response.Redirect("Contact.aspx");
         }
 
         protected void btnLogOut_Click(object sender, EventArgs e)
@@ -110,12 +115,12 @@ namespace CapstoneProject
             currentUserCookie.Value = null;
             HttpContext.Current.Response.SetCookie(currentUserCookie);
             Request.Cookies.Clear();
-            Server.Transfer("Login.aspx");
+            Response.Redirect("Login.aspx");
         }
 
         protected void btnAccount0_Click(object sender, EventArgs e)
         {
-            Server.Transfer("ViewAccount.aspx");
+            Response.Redirect("ViewAccount.aspx");
         }
     }
 }

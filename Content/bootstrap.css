@@ -118,8 +118,7 @@ optgroup,
 select,
 textarea {
   color: inherit;
-  font: inherit;
-  margin: 0;
+  margin: 0 0 0 0px;
 }
 button {
   overflow: visible;
@@ -2355,7 +2354,7 @@ pre code {
 }
 table {
   background-color: transparent;
-    text-align: justify;
+    text-align: center;
 }
 table col[class*="col-"] {
   position: static;

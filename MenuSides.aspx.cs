@@ -16,12 +16,12 @@ namespace CapstoneProject
 
         protected void btnMeals_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Menu-Meals.aspx");
+            Response.Redirect("Menu-Meals.aspx");
         }
 
         protected void btnDrinks_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Menu-Drinks.aspx");
+            Response.Redirect("Menu-Drinks.aspx");
         }
     }
 }
