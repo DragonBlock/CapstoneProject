@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Checkout.aspx" />
     <Content Include="Menu-Drinks.aspx" />
     <Content Include="Menu-Sides.aspx" />
     <Content Include="Menu-Meals.aspx" />
@@ -179,6 +180,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Menu-Drinks.aspx.cs">
       <DependentUpon>Menu-Drinks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
