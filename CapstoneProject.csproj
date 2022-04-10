@@ -121,6 +121,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Menu-Drinks.aspx" />
+    <Content Include="Menu-Sides.aspx" />
     <Content Include="Menu-Meals.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
@@ -177,6 +179,20 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Menu-Drinks.aspx.cs">
+      <DependentUpon>Menu-Drinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu-Drinks.aspx.designer.cs">
+      <DependentUpon>Menu-Drinks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu-Sides.aspx.cs">
+      <DependentUpon>Menu-Sides.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu-Sides.aspx.designer.cs">
+      <DependentUpon>Menu-Sides.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Menu-Meals.aspx.cs">
       <DependentUpon>Menu-Meals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

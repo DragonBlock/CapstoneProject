@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.OleDb;
 using System.Drawing;
-
+using System.Data;
 
 namespace CapstoneProject
 {
@@ -27,8 +27,8 @@ namespace CapstoneProject
         // Connection method
         public void ConnectToDatabase(string path)
         {
-            con.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;" +
-                                    @"Data source=" + path;
+            con.ConnectionString = @"Provider = Microsoft.Jet.OLEDB.4.0;" +
+                                    @"Data Source = "+ path;
             con.Open();
         }
 
@@ -95,16 +95,22 @@ namespace CapstoneProject
             }
         }
 
+        private string[] GetOrderDetailsColumnNames()
+        {
+            return new string[] {"OrderDetails_ID", "Order_ID", "Item_ID",
+                "Side_ID", "Drink_ID", "Amount_Ordered", "Total_Cost"};
+        }
+
         private bool IsConnectionOpen()
         {
             return con.State == System.Data.ConnectionState.Open;
         }
 
-        public Dictionary<string, string> GetItemDetails(ItemType type, int itemID)
+        public DataTable GetItemDetails(ItemType type, int itemID)
         {
             if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
-            Dictionary<string, string> itemDetails = new Dictionary<string, string>();
+            DataTable searchResult;
 
             string query = "SELECT * FROM "+ GetItemTypeTableName(type) 
                 + " WHERE " + GetItemTypeColumnNames(type)[0] + " = @value";
@@ -112,20 +118,14 @@ namespace CapstoneProject
             cmd.Parameters.AddWithValue("@value", itemID);
             using (OleDbDataReader reader = cmd.ExecuteReader())
             {
-                // Call Read before accessing data.
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        itemDetails.Add(GetItemTypeColumnNames(type)[i], reader[i].ToString());
-                    }
-                }
+                searchResult = new DataTable();
 
-                // Call Close when done reading.
+                searchResult.Load(reader);
+
                 reader.Close();
             }
 
-            return itemDetails;
+            return searchResult;
         }
 
         public Bitmap GetMenuItemImage(int itemID)
@@ -152,48 +152,40 @@ namespace CapstoneProject
             return new Bitmap(imageURL);
         }
 
-        public Dictionary<string, string> GetMenuSide(int itemID)
+        public DataTable GetMenuSide(int itemID)
         {
             if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
-            int sideID = Convert.ToInt32(GetItemDetails(ItemType.Main, itemID)["Item_Default_Side_ID"]);
+            int sideID = GetItemDetails(ItemType.Main, itemID).Rows[0].Field<int>("Item_Default_Side_ID");
             return GetItemDetails(ItemType.Side, sideID);
         }
 
-        public List<Dictionary<string, string>> GetItemList(ItemType type)
+        public DataTable GetItemList(ItemType type)
         {
             if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
-            List<Dictionary<string, string>> itemDetailsList = new List<Dictionary<string, string>>();
+            DataTable searchResult;
 
             string query = "SELECT * FROM " + GetItemTypeTableName(type);
             OleDbCommand cmd = new OleDbCommand(query, con);
 
             using (OleDbDataReader reader = cmd.ExecuteReader())
             {
-                // Call Read before accessing data.
-                while (reader.Read())
-                {
-                    Dictionary<string, string> itemDetails = new Dictionary<string, string>();
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        itemDetails.Add(GetItemTypeColumnNames(type)[i], reader[i].ToString());
-                    }
-                    itemDetailsList.Add(itemDetails);
-                }
+                searchResult = new DataTable();
 
-                // Call Close when done reading.
+                searchResult.Load(reader);
+
                 reader.Close();
             }
 
-            return itemDetailsList;
+            return searchResult;
         }
 
         public bool ValidateNewAccount(string newUsername)
         {
             List<Dictionary<string, string>> itemDetailsList = new List<Dictionary<string, string>>();
 
-            string query = "SELECT Customer.Customer_Username, Employee.Employee_Username FROM Customer, Employee";
+            string query = "SELECT Customer.Customer_Username, Employee.Employee_User_Name FROM Customer, Employee";
             OleDbCommand cmd = new OleDbCommand(query, con);
 
             List<string> takenUsernames = new List<string>();
@@ -204,7 +196,7 @@ namespace CapstoneProject
                 while (reader.Read())
                 {
                     takenUsernames.Add(reader["Customer_Username"].ToString());
-                    takenUsernames.Add(reader["Employee_Username"].ToString());
+                    takenUsernames.Add(reader["Employee_User_Name"].ToString());
                 }
 
                 // Call Close when done reading.
@@ -264,14 +256,15 @@ namespace CapstoneProject
                 reader.Close();
             }
 
-            query = "SELECT Employee_ID, Employee_Username, Employee_Password FROM Employee";
+            query = "SELECT Employee_ID, Employee_User_Name, Employee_Password FROM Employee";
             cmd.CommandText = query;
+
             using (OleDbDataReader reader = cmd.ExecuteReader())
             {
                 // Call Read before accessing data.
                 while (reader.Read())
                 {
-                    if (reader["Employee_Username"].ToString() == username
+                    if (reader["Employee_User_Name"].ToString() == username
                         && reader["Employee_Password"].ToString() == password)
                     {
                         return new KeyValuePair<AccountType, int>(AccountType.Employee, Convert.ToInt32(reader["Employee_ID"]));
@@ -285,9 +278,9 @@ namespace CapstoneProject
             return new KeyValuePair<AccountType, int>(AccountType.Customer, -1);
         }
 
-        public Dictionary<string, string> GetAccountDetails(AccountType aType, int userID)
+        public DataTable GetAccountDetails(AccountType aType, int userID)
         {
-            Dictionary<string, string> accountDetails = new Dictionary<string, string>();
+            DataTable accountDetails;
 
             if (aType == AccountType.Customer)
             {
@@ -298,16 +291,10 @@ namespace CapstoneProject
 
                 using (OleDbDataReader reader = cmd.ExecuteReader())
                 {
-                    // Call Read before accessing data.
-                    while (reader.Read())
-                    {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            accountDetails.Add(GetAccountTypeColumnNames(aType)[i], reader[i].ToString());
-                        }
-                    }
+                    accountDetails = new DataTable();
 
-                    // Call Close when done reading.
+                    accountDetails.Load(reader);
+
                     reader.Close();
                 }
             }
@@ -320,16 +307,10 @@ namespace CapstoneProject
 
                 using (OleDbDataReader reader = cmd.ExecuteReader())
                 {
-                    // Call Read before accessing data.
-                    while (reader.Read())
-                    {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            accountDetails.Add(GetAccountTypeColumnNames(aType)[i], reader[i].ToString());
-                        }
-                    }
+                    accountDetails = new DataTable();
 
-                    // Call Close when done reading.
+                    accountDetails.Load(reader);
+
                     reader.Close();
                 }
             }
@@ -352,15 +333,15 @@ namespace CapstoneProject
                 double total = 0;
                 if (orderDetails[i].menuID != -1)
                 {
-                    total += double.Parse(GetItemDetails(ItemType.Main, orderDetails[i].menuID)["Item_Price"]);
+                    total += GetItemDetails(ItemType.Main, orderDetails[i].menuID).Rows[0].Field<double>("Item_Price");
                 }
                 if (orderDetails[i].sideID != -1)
                 {
-                    total += double.Parse(GetItemDetails(ItemType.Side, orderDetails[i].sideID)["Side_Price"]);
+                    total += GetItemDetails(ItemType.Side, orderDetails[i].sideID).Rows[0].Field<double>("Side_Price");
                 }
                 if (orderDetails[i].drinkID != -1)
                 {
-                    total += double.Parse(GetItemDetails(ItemType.Drink, orderDetails[i].menuID)["Drink_Cost"]);
+                    total += GetItemDetails(ItemType.Drink, orderDetails[i].menuID).Rows[0].Field<double>("Drink_Cost");
                 }
                 total *= orderDetails[i].amount;
                 totals.Add(total);
@@ -489,32 +470,141 @@ namespace CapstoneProject
             return paymentID;
         }
 
-        public void ViewOrderDetailsList()
+        public DataTable ViewOrderDetailsList(int orderID)
         {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            DataTable orderDetailsTable;
+
+            string query = "SELECT * FROM OrderDetails WHERE Order_ID = @OrderID";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+            cmd.Parameters.AddWithValue("@OrderID", orderID);
+
+            using (OleDbDataReader reader = cmd.ExecuteReader())
+            {
+                orderDetailsTable = new DataTable();
+
+                orderDetailsTable.Load(reader);
+
+                reader.Close();
+            }
+
+            return orderDetailsTable;
         }
 
-        public void AddMenuItem()
+        public DataTable GetItemTypes()
         {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            DataTable itemTypesTable;
+
+            string query = "SELECT * FROM ItemType";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+
+            using (OleDbDataReader reader = cmd.ExecuteReader())
+            {
+                itemTypesTable = new DataTable();
+
+                itemTypesTable.Load(reader);
+
+                reader.Close();
+            }
+
+            return itemTypesTable;
         }
 
-        public void AddDrink()
+        public bool AddMenuItem(int typeID, string name, string desc, double price,
+            int calories, string imageURL, bool hasDrink, string ingredients, int defaultSideID = -1)
         {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            string query = "INSERT INTO Menu (Item_Type_ID, Item_Name, " +
+                "Item_Description, Item_Price, Item_Calories, Item_Image, Item_Includes_Drink, "+
+                (defaultSideID == -1 ? "Item_Default_Side_ID, " : "") + "Item_Ingredients) " +
+                    "VALUES (@TypeID, @Name, @Desc, @Price, @Cals, @ImageURL, @HasDrink, " + 
+                    (defaultSideID == -1  ? "@SideID, " : "") + "@Ingred)";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+            DateTime time = DateTime.Now;
+            cmd.Parameters.AddWithValue("@TypeID", typeID);
+            cmd.Parameters.AddWithValue("@Name", name);
+            cmd.Parameters.AddWithValue("@Desc", desc);
+            cmd.Parameters.AddWithValue("@Price", price);
+            cmd.Parameters.AddWithValue("@Cals", calories);
+            cmd.Parameters.AddWithValue("@ImageURL", imageURL);
+            cmd.Parameters.AddWithValue("@HasDrink", hasDrink);
+            cmd.Parameters.AddWithValue("@SideID", defaultSideID);
+            cmd.Parameters.AddWithValue("@Ingred", ingredients);
+
+            int worked = cmd.ExecuteNonQuery();
+
+            if (worked == 0) return false;
+            else return true;
         }
 
-        public void AddSide()
+        public bool AddSide(string name, string desc, double price, int calories)
         {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            string query = "INSERT INTO SideMenu (Side_Name, Side_Description, " +
+                "Side_Price, Side_Calories) " +
+                    "VALUES (@Name, @Desc, @Price, @Cals)";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+            DateTime time = DateTime.Now;
+            cmd.Parameters.AddWithValue("@Name", name);
+            cmd.Parameters.AddWithValue("@Desc", desc);
+            cmd.Parameters.AddWithValue("@Price", price);
+            cmd.Parameters.AddWithValue("@Cals", calories);
+
+            int worked = cmd.ExecuteNonQuery();
+
+            if (worked == 0) return false;
+            else return true;
         }
 
-        public void GetListOfOrders()
+        public bool AddDrink(string name, string desc, double cost, bool costExtra)
         {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            string query = "INSERT INTO DrinkMenu (Drink_Name, Drink_Description, " +
+                "Drink_Cost, Drink_Costs_Extra) " +
+                    "VALUES (@Name, @Desc, @Cost, @CostsExtra)";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+            DateTime time = DateTime.Now;
+            cmd.Parameters.AddWithValue("@Name", name);
+            cmd.Parameters.AddWithValue("@Desc", desc);
+            cmd.Parameters.AddWithValue("@Cost", cost);
+            cmd.Parameters.AddWithValue("@CostsExtra", costExtra);
+
+            int worked = cmd.ExecuteNonQuery();
+
+            if (worked == 0) return false;
+            else return true;
         }
 
+        public DataTable GetListOfOrders()
+        {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            DataTable ordersTable;
+
+            string query = "SELECT Customer.Customer_ID, Customer.Customer_First_Name, Customer.Customer_Last_Name, Order.Order_Total, " +
+                "Order.Order_Status, Order.Order_Date, Order.Order_Payment_Date, Order.Order_Processed_By_Employee, " +
+                "Order.Order_Payment_Amount, PaymentInfo.Info_Was_Cash, PaymentInfo.Info_Paid_In_Full " +
+                "FROM ((Order INNER JOIN Customer ON Order.Customer_ID = Customer.Customer_ID) "+ 
+                "INNER JOIN PaymentInfo ON Order.Payment_Info_ID = PaymentInfo.Payment_Info_ID)";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+
+            using (OleDbDataReader reader = cmd.ExecuteReader())
+            {
+                ordersTable = new DataTable();
+
+                ordersTable.Load(reader);
+
+                reader.Close();
+            }
+
+            return ordersTable;
+        }
     }
     public struct OrderDetail
     {
