@@ -318,6 +318,101 @@ namespace CapstoneProject
             return accountDetails;
         }
 
+        public bool ChangePassword(AccountType aType, int userID, string newPass)
+        {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
+
+            int worked = 0;
+
+            if (aType == AccountType.Customer)
+            {
+                string query = "UPDATE Customer SET Customer_Password = '"+ newPass +"'" +
+                    " WHERE Customer_ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                worked = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            else
+            {
+                string query = "UPDATE Employee SET Employee_Password = '" + newPass + "'" +
+                    " WHERE Employee_ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                worked = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+
+            if (worked == 0) return false;
+            else return true;
+        }
+
+        public bool ChangeEmail(AccountType aType, int userID, string newEmail)
+        {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
+
+            int worked = 0;
+
+            if (aType == AccountType.Customer)
+            {
+                string query = "UPDATE Customer SET Customer_Email = '" + newEmail + "'" +
+                    " WHERE Customer_ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                worked = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            else
+            {
+                string query = "UPDATE Employee SET Employee_Email = '" + newEmail + "'" +
+                    " WHERE Employee_ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                worked = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+
+            if (worked == 0) return false;
+            else return true;
+        }
+
+        public bool ChangeUsername(AccountType aType, int userID, string newUsername)
+        {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
+
+            if(!ValidateNewAccount(newUsername)) return false;
+
+            int worked = 0;
+
+            if (aType == AccountType.Customer)
+            {
+                string query = "UPDATE Customer SET Customer_Username = '" + newUsername + "'" +
+                    " WHERE Customer_ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                worked = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            else
+            {
+                string query = "UPDATE Employee SET Employee_User_Name = '" + newUsername + "'" +
+                    " WHERE Employee_ID = @ID";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@ID", userID);
+
+                worked = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+
+            if (worked == 0) return false;
+            else return true;
+        }
+
         public bool PlaceOrder(int custID, List<OrderDetail> orderDetails, bool isCash, PaymentInfo info)
         {
             if (!IsConnectionOpen()) throw new Exception("Connection is Closed");

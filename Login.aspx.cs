@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace CapstoneProject
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         DatabaseAccessor accessor;
 
@@ -38,12 +38,14 @@ namespace CapstoneProject
                     HttpCookie cookie = new HttpCookie("LoginInfo", "Customer" + userID.Value);
                     Response.AppendCookie(cookie);
 
-                    LoginToWebsite.DestinationPageUrl = "About.aspx";
-                    //LoginToWebsite.DestinationPageUrl = "ViewAccount.aspx";
+                    LoginToWebsite.DestinationPageUrl = "ViewAccount.aspx";
                 }
                 else
                 {
-                    FormsAuthentication.SetAuthCookie("Employee" + userID.Value, false);
+                    HttpCookie cookie = new HttpCookie("LoginInfo", "Employee" + userID.Value);
+                    Response.AppendCookie(cookie);
+
+                    LoginToWebsite.DestinationPageUrl = "About.aspx";
                     //LoginToWebsite.DestinationPageUrl = "Admin.aspx";
                 }
             } 

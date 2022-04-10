@@ -10,7 +10,7 @@
 namespace CapstoneProject {
     
     
-    public partial class WebForm1 {
+    public partial class Login {
         
         /// <summary>
         /// LoginToWebsite control.
