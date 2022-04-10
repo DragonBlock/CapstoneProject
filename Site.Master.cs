@@ -79,7 +79,7 @@ namespace CapstoneProject
 
         protected void btnMenu_Click(System.Object sender, System.EventArgs e)
         {
-            Server.Transfer("Menu-Meals.aspx");
+            Server.Transfer("MenuMeals.aspx");
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
@@ -99,6 +99,16 @@ namespace CapstoneProject
 
         protected void btnLogOut_Click(object sender, EventArgs e)
         {
+            HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["LoginInfo"];
+            HttpContext.Current.Response.Cookies.Remove("LoginInfo");
+            currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+            currentUserCookie.Value = null;
+            HttpContext.Current.Response.SetCookie(currentUserCookie);
+            currentUserCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            HttpContext.Current.Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
+            currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+            currentUserCookie.Value = null;
+            HttpContext.Current.Response.SetCookie(currentUserCookie);
             Request.Cookies.Clear();
             Server.Transfer("Login.aspx");
         }

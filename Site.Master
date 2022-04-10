@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="CapstoneProject.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CapstoneProject.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -74,6 +74,7 @@
             top: 303px;
             right: 1458px;
             width: 329px;
+            height: 5%;
             bottom: 20px;
         }
 
@@ -123,17 +124,17 @@
 
             <div class="body-content">
                 <div class="navbar">
-                    <asp:Button ID="btnMenu" Text="Menu" runat="server" OnClick="btnMenu_Click" />
-                    <asp:Button ID="btnHome" Text="Home" runat="server" OnClick="btnHome_Click" />
-                    <asp:Button ID="btnCart" Text="See Cart" runat="server" />
-                    <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
-                    <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" />
-                    <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" />
-                    <asp:Button ID="btnAccount0" runat="server" Text="View Account" />
-                    <asp:Button ID="btnAdmin0" runat="server" Text="Admin" />
-                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" />
-                    <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
-                    <asp:Button ID="Contactbtn" runat="server" Text="Contact Us" Width="90px" OnClick="Contactbtn_Click" />
+                    <asp:Button ID="btnMenu" Text="Menu" runat="server" OnClick="btnMenu_Click" UseSubmitBehavior="False" />
+                    <asp:Button ID="btnHome" Text="Home" runat="server" OnClick="btnHome_Click" UseSubmitBehavior="False" />
+                    <asp:Button ID="btnCart" Text="See Cart" runat="server" UseSubmitBehavior="False" />
+                    <asp:Button ID="btnCheckout" Text="Checkout" runat="server" UseSubmitBehavior="False" />
+                    <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" UseSubmitBehavior="False" />
+                    <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" UseSubmitBehavior="False" OnClick="btnLogin_Click" />
+                    <asp:Button ID="btnAccount0" runat="server" Text="View Account" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />
+                    <asp:Button ID="btnAdmin0" runat="server" Text="Admin" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />
+                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" UseSubmitBehavior="False" OnClick="btnLogOut_Click" />
+                    <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" UseSubmitBehavior="False" />
+                    <asp:Button ID="Contactbtn" runat="server" Text="Contact Us" Width="90px" OnClick="Contactbtn_Click" UseSubmitBehavior="False" />
                 </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     <p>

@@ -130,17 +130,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Content Include="Checkout.aspx" />
-    <Content Include="Menu-Drinks.aspx" />
-    <Content Include="Menu-Sides.aspx" />
-    <Content Include="Menu-Meals.aspx" />
-=======
     <Content Include="FoodOrderingDB.mdb" />
     <Content Include="MenuDrinks.aspx" />
     <Content Include="MenuSides.aspx" />
     <Content Include="MenuMeals.aspx" />
->>>>>>> e0650b8a9e123fe7def8f1b960291189d14c8cc7
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -204,7 +198,6 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -212,12 +205,8 @@
     <Compile Include="Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Menu-Drinks.aspx.cs">
-      <DependentUpon>Menu-Drinks.aspx</DependentUpon>
-=======
     <Compile Include="MenuDrinks.aspx.cs">
       <DependentUpon>MenuDrinks.aspx</DependentUpon>
->>>>>>> e0650b8a9e123fe7def8f1b960291189d14c8cc7
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuDrinks.aspx.designer.cs">

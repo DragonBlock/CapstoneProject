@@ -45,8 +45,7 @@ namespace CapstoneProject
                     HttpCookie cookie = new HttpCookie("LoginInfo", "Employee" + userID.Value);
                     Response.AppendCookie(cookie);
 
-                    LoginToWebsite.DestinationPageUrl = "About.aspx";
-                    //LoginToWebsite.DestinationPageUrl = "Admin.aspx";
+                    LoginToWebsite.DestinationPageUrl = "Admin.aspx";
                 }
             } 
         }
