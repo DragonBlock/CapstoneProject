@@ -90,5 +90,16 @@ namespace CapstoneProject
         {
             Server.Transfer("Contact.aspx");
         }
+
+        protected void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Request.Cookies.Clear();
+            Server.Transfer("Login.aspx");
+        }
+
+        protected void btnAccount0_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("ViewAccount.aspx");
+        }
     }
 }

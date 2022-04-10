@@ -117,9 +117,9 @@
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
         <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" />
         <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" />
-                <asp:Button ID="btnAccount0" runat="server" Text="View Account" />
+                <asp:Button ID="btnAccount0" runat="server" Text="View Account" OnClick="btnAccount0_Click" />
                 <asp:Button ID="btnAdmin0" runat="server" Text="Admin" />
-                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" />
+                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" />
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
                     <asp:Button ID="Cntactbtn" runat="server" Text="Contact Us" Width="90px" OnClick="Cntactbtn_Click" />
                 </div>
