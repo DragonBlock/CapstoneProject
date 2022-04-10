@@ -33,9 +33,11 @@
         .header-text {
             text-align: left;
             position: absolute;
-            top: 40%;
-            left: 5%;
+            top: 22%;
+            left: 1%;
             color: white;
+            width: 357px;
+            height: 94px;
         }
 
         section {
@@ -76,6 +78,14 @@
         #btnNarrate {
             height: 45px;
         }
+        .auto-style1 {
+            width: 1891px;
+            height: 207px;
+        }
+        .auto-style2 {
+            width: 351px;
+            height: 91px;
+        }
     </style>
 </head>
 
@@ -102,12 +112,9 @@
         </asp:ScriptManager>
 
         <div class="header-image">
-            <img alt="Pizza Closeup" src="file:///C:/Users/DamionShirkey/Desktop/Pizza.jpg" />
+            <img alt="Pizza Closeup" class="auto-style1" src="Pizza.jpg" /></div>
             <div class="header-text">
-                <h1>VirtU Food</h1>
-            </div>
-        </div>
-
+                <img alt="Logo" class="auto-style2" src="Logo.png" /></div>
         <section>
             <div class="leftMenu">
                 <input id="btnNarrate" type="button" value="Turn On/Off Narration" />
@@ -116,7 +123,7 @@
             <div class="container body-content">
                 <div class="navbar">
                     <asp:Button ID="btnHome" Text="Home" runat="server" />
-                    <asp:Button ID="btnMenu" Text="Menu" runat="server" />
+                    <asp:Button ID="btnMenu" Text="Menu" runat="server" OnClick="btnMenu_Click" />
                     <asp:Button ID="btnCart" Text="See Cart" runat="server" />
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
                     <asp:Button ID="btnAdmin" Text="Admin" runat="server" />

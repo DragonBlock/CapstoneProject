@@ -7,21 +7,21 @@ using System.Web.UI.WebControls;
 
 namespace CapstoneProject
 {
-    public partial class SiteMaster : MasterPage
+    public partial class MenuMeals : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnAbout_Click(System.Object sender, System.EventArgs e)
+        protected void btnSides_Click(object sender, EventArgs e)
         {
-            Server.Transfer("About.aspx");
+            Server.Transfer("Menu-Sides.aspx");
         }
 
-        protected void btnMenu_Click(System.Object sender, System.EventArgs e)
+        protected void btnDrinks_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Menu-Meals.aspx");
+            Server.Transfer("Menu-Drinks.aspx");
         }
     }
 }
