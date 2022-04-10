@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapstoneProject
-{
-
-
-    public partial class SiteMaster
-    {
-
+namespace CapstoneProject {
+    
+    
+    public partial class SiteMaster {
+        
         /// <summary>
         /// Image3 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Image3;
-
+        
         /// <summary>
         /// btnHome control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnHome;
-
+        
         /// <summary>
         /// btnMenu control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnMenu;
-
+        
         /// <summary>
         /// btnCart control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCart;
-
+        
         /// <summary>
         /// btnCheckout control.
         /// </summary>
@@ -58,43 +56,52 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCheckout;
-
+        
         /// <summary>
-        /// btnAdmin control.
+        /// btnLogin0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdmin;
-
+        protected global::System.Web.UI.WebControls.Button btnLogin0;
+        
         /// <summary>
-        /// btnLogin control.
+        /// btnSignUp0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
-
+        protected global::System.Web.UI.WebControls.Button btnSignUp0;
+        
         /// <summary>
-        /// btnSignUp control.
+        /// btnAccount0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignUp;
-
+        protected global::System.Web.UI.WebControls.Button btnAccount0;
+        
         /// <summary>
-        /// btnAccount control.
+        /// btnAdmin0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAccount;
-
+        protected global::System.Web.UI.WebControls.Button btnAdmin0;
+        
+        /// <summary>
+        /// btnLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogOut;
+        
         /// <summary>
         /// btnAbout control.
         /// </summary>
@@ -103,7 +110,7 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAbout;
-
+        
         /// <summary>
         /// MainContent control.
         /// </summary>
@@ -112,7 +119,7 @@ namespace CapstoneProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-
+        
         /// <summary>
         /// Image1 control.
         /// </summary>

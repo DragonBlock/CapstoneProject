@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -32,11 +34,17 @@ namespace CapstoneProject
                 e.Authenticated = true;
                 if (userID.Key == AccountType.Customer)
                 {
-                    LoginToWebsite.DestinationPageUrl = "ViewAccount.aspx";
+
+                    HttpCookie cookie = new HttpCookie("LoginInfo", "Customer" + userID.Value);
+                    Response.AppendCookie(cookie);
+
+                    LoginToWebsite.DestinationPageUrl = "About.aspx";
+                    //LoginToWebsite.DestinationPageUrl = "ViewAccount.aspx";
                 }
                 else
                 {
-                    LoginToWebsite.DestinationPageUrl = "Admin.aspx";
+                    FormsAuthentication.SetAuthCookie("Employee" + userID.Value, false);
+                    //LoginToWebsite.DestinationPageUrl = "Admin.aspx";
                 }
             } 
         }

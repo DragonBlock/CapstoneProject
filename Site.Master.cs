@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,6 +14,59 @@ namespace CapstoneProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.Cookies.Count == 0)
+            {
+                btnAdmin0.Visible = false;
+                btnAdmin0.Enabled = false;
+                btnAccount0.Visible = false;
+                btnAccount0.Enabled = false;
+                btnLogin0.Visible = true;
+                btnLogin0.Enabled = true;
+                btnSignUp0.Visible = true;
+                btnSignUp0.Enabled = true;
+                btnLogOut.Visible = false;
+                btnLogOut.Enabled = false;
+                
+            }
+            else if (Request.Cookies["LoginInfo"].Value.Contains("Customer"))
+            {
+                btnAdmin0.Visible = false;
+                btnAdmin0.Enabled = false;
+                btnAccount0.Visible = true;
+                btnAccount0.Enabled = true;
+                btnLogin0.Visible = false;
+                btnLogin0.Enabled = false;
+                btnSignUp0.Visible = false;
+                btnSignUp0.Enabled = false;
+                btnLogOut.Visible = true;
+                btnLogOut.Enabled = true;
+            }
+            else if (Request.Cookies["LoginInfo"].Value.Contains("Employee"))
+            {
+                btnAdmin0.Visible = true;
+                btnAdmin0.Enabled = true;
+                btnAccount0.Visible = false;
+                btnAccount0.Enabled = false;
+                btnLogin0.Visible = false;
+                btnLogin0.Enabled = false;
+                btnSignUp0.Visible = false;
+                btnSignUp0.Enabled = false;
+                btnLogOut.Visible = true;
+                btnLogOut.Enabled = true;
+            }
+            else
+            {
+                btnAdmin0.Visible = false;
+                btnAdmin0.Enabled = false;
+                btnAccount0.Visible = false;
+                btnAccount0.Enabled = false;
+                btnLogin0.Visible = true;
+                btnLogin0.Enabled = true;
+                btnSignUp0.Visible = true;
+                btnSignUp0.Enabled = true;
+                btnLogOut.Visible = false;
+                btnLogOut.Enabled = false;
+            }
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
         }

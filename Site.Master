@@ -115,10 +115,11 @@
                     <asp:Button ID="btnMenu" Text="Menu" runat="server" />
                     <asp:Button ID="btnCart" Text="See Cart" runat="server" />
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
-                    <asp:Button ID="btnAdmin" Text="Admin" runat="server" />
-                    <asp:Button ID="btnLogin" Text="Login" runat="server" OnClick="btnLogin_Click" />
-                    <asp:Button ID="btnSignUp" Text="Sign Up" runat="server" />
-                    <asp:Button ID="btnAccount" Text="View Account" runat="server" />
+        <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" />
+        <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" />
+                <asp:Button ID="btnAccount0" runat="server" Text="View Account" />
+                <asp:Button ID="btnAdmin0" runat="server" Text="Admin" />
+                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" />
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
                 </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
