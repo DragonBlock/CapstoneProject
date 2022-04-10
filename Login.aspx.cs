@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace CapstoneProject
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         DatabaseAccessor accessor;
 

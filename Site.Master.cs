@@ -92,7 +92,7 @@ namespace CapstoneProject
             Server.Transfer("Login.aspx");
         }
 
-        protected void Cntactbtn_Click(object sender, EventArgs e)
+        protected void Contactbtn_Click(object sender, EventArgs e)
         {
             Server.Transfer("Contact.aspx");
         }
