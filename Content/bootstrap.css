@@ -1114,6 +1114,9 @@ figure {
 }
 img {
   vertical-align: middle;
+    margin-left: 0px;
+    margin-right: 12px;
+    margin-top: 0px;
 }
 .img-responsive,
 .thumbnail > img,
@@ -1265,6 +1268,8 @@ h6 .small,
 h1,
 .h1 {
   font-size: 36px;
+    width: 277px;
+    height: 47px;
 }
 h2,
 .h2 {
@@ -1671,6 +1676,8 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+    top: -4px;
+    left: 1px;
 }
 .col-xs-1,
 .col-xs-2,
@@ -4244,6 +4251,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+    top: -49px;
+    left: 8px;
+    width: 632px;
 }
 @media (min-width: 768px) {
   .navbar {
