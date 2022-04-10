@@ -120,6 +120,7 @@
                     <asp:Button ID="btnSignUp" Text="Sign Up" runat="server" />
                     <asp:Button ID="btnAccount" Text="View Account" runat="server" />
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
+                    <asp:Button ID="Cntactbtn" runat="server" Text="Contact Us" Width="90px" OnClick="Cntactbtn_Click" />
                 </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     <p>
