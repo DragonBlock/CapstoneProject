@@ -185,7 +185,7 @@ namespace CapstoneProject
         {
             List<Dictionary<string, string>> itemDetailsList = new List<Dictionary<string, string>>();
 
-            string query = "SELECT Customer.Customer_Username, Employee.Employee_Username FROM Customer, Employee";
+            string query = "SELECT Customer.Customer_Username, Employee.Employee_User_Name FROM Customer, Employee";
             OleDbCommand cmd = new OleDbCommand(query, con);
 
             List<string> takenUsernames = new List<string>();
@@ -196,7 +196,7 @@ namespace CapstoneProject
                 while (reader.Read())
                 {
                     takenUsernames.Add(reader["Customer_Username"].ToString());
-                    takenUsernames.Add(reader["Employee_Username"].ToString());
+                    takenUsernames.Add(reader["Employee_User_Name"].ToString());
                 }
 
                 // Call Close when done reading.
@@ -256,7 +256,7 @@ namespace CapstoneProject
                 reader.Close();
             }
 
-            query = "SELECT Employee_ID, Employee_Username, Employee_Password FROM Employee";
+            query = "SELECT Employee_ID, Employee_User_Name, Employee_Password FROM Employee";
             cmd.CommandText = query;
 
             using (OleDbDataReader reader = cmd.ExecuteReader())
@@ -264,7 +264,7 @@ namespace CapstoneProject
                 // Call Read before accessing data.
                 while (reader.Read())
                 {
-                    if (reader["Employee_Username"].ToString() == username
+                    if (reader["Employee_User_Name"].ToString() == username
                         && reader["Employee_Password"].ToString() == password)
                     {
                         return new KeyValuePair<AccountType, int>(AccountType.Employee, Convert.ToInt32(reader["Employee_ID"]));

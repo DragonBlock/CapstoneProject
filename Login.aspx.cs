@@ -28,15 +28,15 @@ namespace CapstoneProject
                 e.Authenticated = false;
             }
             else
-            {
+            { 
                 e.Authenticated = true;
                 if (userID.Key == AccountType.Customer)
                 {
-                    // Goto View account
+                    LoginToWebsite.DestinationPageUrl = "ViewAccount.aspx";
                 }
                 else
                 {
-                    // Goto Admin
+                    LoginToWebsite.DestinationPageUrl = "Admin.aspx";
                 }
             } 
         }

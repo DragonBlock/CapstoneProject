@@ -9,9 +9,12 @@ namespace CapstoneProject
 {
     public partial class SiteMaster : MasterPage
     {
+        public DatabaseAccessor accessor;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            accessor = new DatabaseAccessor();
+            accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
         }
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
@@ -22,6 +25,11 @@ namespace CapstoneProject
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Server.Transfer("Default.aspx");
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Login.aspx");
         }
     }
 }

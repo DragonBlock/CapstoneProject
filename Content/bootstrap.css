@@ -2355,6 +2355,7 @@ pre code {
 }
 table {
   background-color: transparent;
+    text-align: justify;
 }
 table col[class*="col-"] {
   position: static;

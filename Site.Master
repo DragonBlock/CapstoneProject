@@ -116,7 +116,7 @@
                     <asp:Button ID="btnCart" Text="See Cart" runat="server" />
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
                     <asp:Button ID="btnAdmin" Text="Admin" runat="server" />
-                    <asp:Button ID="btnLogin" Text="Login" runat="server" />
+                    <asp:Button ID="btnLogin" Text="Login" runat="server" OnClick="btnLogin_Click" />
                     <asp:Button ID="btnSignUp" Text="Sign Up" runat="server" />
                     <asp:Button ID="btnAccount" Text="View Account" runat="server" />
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
