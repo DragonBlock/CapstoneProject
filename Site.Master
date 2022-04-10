@@ -62,7 +62,7 @@
         }
 
         footer {
-            background-color: #777;
+            background-color: #4cff00;
             padding: 10px;
             text-align: center;
             color: white;
@@ -121,6 +121,7 @@
                 <asp:Button ID="btnAdmin0" runat="server" Text="Admin" />
                     <asp:Button ID="btnLogOut" runat="server" Text="Log Out" />
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
+                    <asp:Button ID="Cntactbtn" runat="server" Text="Contact Us" Width="90px" OnClick="Cntactbtn_Click" />
                 </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     <p>
