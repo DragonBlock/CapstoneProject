@@ -16,49 +16,43 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         .header-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-            width: 114%;
-            height: 355px;
+            width: 100%;
+            height: 230px;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
-            top: 11px;
-            left: 18px;
         }
 
         .header-text {
             text-align: left;
             position: absolute;
-            top: 40%;
+            top: 20%;
             left: 5%;
             color: white;
+            width: 357px;
+            height: 94px;
         }
 
         section {
-            display: -webkit-flex;
-            display: flex;
+            width: 100%;
         }
 
         .leftMenu {
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
+            float: left;
             background: #ccc;
             padding: 20px;
+            height: 100%;
+            width: 20%;
         }
 
         .body-content {
-            -webkit-flex: 3;
-            -ms-flex: 3;
-            flex: 3;
             background-color: #f1f1f1;
             padding: 10px;
+            margin-left: 22%;
+            height: 100%;
         }
 
         footer {
@@ -76,8 +70,21 @@
         }
 
         #btnNarrate {
-            height: 83px;
-            width: 203px;
+            position: fixed;
+            top: 303px;
+            right: 1458px;
+            width: 329px;
+            bottom: 20px;
+        }
+
+        .auto-style1 {
+            width: 1891px;
+            height: 207px;
+        }
+
+        .auto-style2 {
+            width: 351px;
+            height: 91px;
         }
     </style>
 </head>
@@ -103,38 +110,40 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
+        <div class="header-image">
+            <img alt="Pizza Closeup" class="auto-style1" src="Pizza.jpg" />
+        </div>
+        <div class="header-text">
+            <img alt="Logo" class="auto-style2" src="Logo.png" />
+        </div>
         <section>
             <div class="leftMenu" aria-expanded="true" aria-hidden="True" aria-orientation="horizontal" draggable="true">
-                &nbsp;<asp:Image ID="Image3" runat="server" BorderStyle="None" Height="479px" ImageAlign="Left" ImageUrl="~/Images/pexels-valeria-boltneva-1199959.jpg" Width="579px" />
+                <input id="btnNarrate" type="button" value="Turn On/Off Narration" dir="rtl" />
             </div>
 
             <div class="body-content">
                 <div class="navbar">
+                    <asp:Button ID="btnMenu" Text="Menu" runat="server" OnClick="btnMenu_Click" />
                     <asp:Button ID="btnHome" Text="Home" runat="server" OnClick="btnHome_Click" />
-                    <asp:Button ID="btnMenu" Text="Menu" runat="server" />
                     <asp:Button ID="btnCart" Text="See Cart" runat="server" />
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
-        <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" />
-        <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" />
-                <asp:Button ID="btnAccount0" runat="server" Text="View Account" OnClick="btnAccount0_Click" />
-                <asp:Button ID="btnAdmin0" runat="server" Text="Admin" />
-                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" />
+                    <asp:Button ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" />
+                    <asp:Button ID="btnSignUp0" runat="server" Text="Sign Up" />
+                    <asp:Button ID="btnAccount0" runat="server" Text="View Account" />
+                    <asp:Button ID="btnAdmin0" runat="server" Text="Admin" />
+                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" />
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
                     <asp:Button ID="Cntactbtn" runat="server" Text="Contact Us" Width="90px" OnClick="Cntactbtn_Click" />
                 </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     <p>
-                        &nbsp;</p>
+                        &nbsp;
+                    </p>
                 </asp:ContentPlaceHolder>
-                <asp:Image ID="Image1" runat="server" Height="387px" ImageUrl="~/Images/pexels-elli-1854652.jpg" Width="598px" />
             </div>
         </section>
     </form>
-
-    <p>
-        <input id="btnNarrate" type="button" value="Turn On/Off Narration" dir="rtl" /></p>
-                <p>&copy; <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>- VirtU Food Delivery</p>
+    <p>&copy; <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>- VirtU Food Delivery</p>
 
 </body>
 </html>

@@ -76,6 +76,11 @@ namespace CapstoneProject
             Server.Transfer("About.aspx");
         }
 
+<<<<<<< HEAD
+        protected void btnMenu_Click(System.Object sender, System.EventArgs e)
+        {
+            Server.Transfer("Menu-Meals.aspx");
+=======
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Server.Transfer("Default.aspx");
@@ -89,6 +94,7 @@ namespace CapstoneProject
         protected void Cntactbtn_Click(object sender, EventArgs e)
         {
             Server.Transfer("Contact.aspx");
+>>>>>>> 128fc7597dfbcd100faf1cebc5bd0b29ae453adc
         }
 
         protected void btnLogOut_Click(object sender, EventArgs e)
