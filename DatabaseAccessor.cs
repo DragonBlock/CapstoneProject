@@ -79,6 +79,21 @@ namespace CapstoneProject
             }
         }
 
+        private string[] GetAccountTypeColumnNames(AccountType accountType)
+        {
+            switch (accountType)
+            {
+                case AccountType.Customer:
+                    return new string[] {"Customer_ID", "Customer_First_Name", "Customer_Last_Name",
+                        "Customer_Email", "Customer_Phone_Num", "Customer_Username", "Customer_Password"};
+                case AccountType.Employee:
+                    return new string[] {"Employee_ID", "Employee_First_Name", "Employee_Last_Name",
+                        "Employee_Email", "Employee_User_Name", "Employee_Password",
+                    "Employee_Has_Menu_Privileges", "Employee_Has_Payment_Privileges"};
+                default:
+                    return null;
+            }
+        }
 
         private bool IsConnectionOpen()
         {
@@ -210,7 +225,7 @@ namespace CapstoneProject
 
             if(!ValidateNewAccount(username)) return false;
 
-            string query = "INSERT INTO INSERT INTO Customer (Customer_Username, Customer_Password, Customer_First_Name, Customer_Last_Name, Customer_Email, Customer_Phone_Num) " +
+            string query = "INSERT INTO Customer (Customer_Username, Customer_Password, Customer_First_Name, Customer_Last_Name, Customer_Email, Customer_Phone_Num) " +
                     "VALUES (@Username, @Pass, @FirstName, @LastName, @Email, @Phone)";
             OleDbCommand cmd = new OleDbCommand(query, con);
             cmd.Parameters.AddWithValue("@Username", username);
@@ -270,19 +285,208 @@ namespace CapstoneProject
             return new KeyValuePair<AccountType, int>(AccountType.Customer, -1);
         }
 
-        public void GetAccountDetails(AccountType aType, int userID)
+        public Dictionary<string, string> GetAccountDetails(AccountType aType, int userID)
         {
+            Dictionary<string, string> accountDetails = new Dictionary<string, string>();
 
+            if (aType == AccountType.Customer)
+            {
+                string query = "SELECT * FROM Customer" + 
+                    " WHERE Customer_ID = @value";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@value", userID);
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    // Call Read before accessing data.
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            accountDetails.Add(GetAccountTypeColumnNames(aType)[i], reader[i].ToString());
+                        }
+                    }
+
+                    // Call Close when done reading.
+                    reader.Close();
+                }
+            }
+            else
+            {
+                string query = "SELECT * FROM Employee" +
+                    " WHERE Employee_ID = @value";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.AddWithValue("@value", userID);
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    // Call Read before accessing data.
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            accountDetails.Add(GetAccountTypeColumnNames(aType)[i], reader[i].ToString());
+                        }
+                    }
+
+                    // Call Close when done reading.
+                    reader.Close();
+                }
+            }
+
+            return accountDetails;
         }
 
-        public void PlaceOrder()
+        public bool PlaceOrder(int custID, List<OrderDetail> orderDetails, bool isCash, PaymentInfo info)
         {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
 
+            int paymentID = ProcessPayment(isCash, info);
+
+            if (paymentID == -1) return false;
+
+            List<double> totals = new List<double>();
+
+            for (int i = 0; i < orderDetails.Count; i++)
+            {
+                double total = 0;
+                if (orderDetails[i].menuID != -1)
+                {
+                    total += double.Parse(GetItemDetails(ItemType.Main, orderDetails[i].menuID)["Item_Price"]);
+                }
+                if (orderDetails[i].sideID != -1)
+                {
+                    total += double.Parse(GetItemDetails(ItemType.Side, orderDetails[i].sideID)["Side_Price"]);
+                }
+                if (orderDetails[i].drinkID != -1)
+                {
+                    total += double.Parse(GetItemDetails(ItemType.Drink, orderDetails[i].menuID)["Drink_Cost"]);
+                }
+                total *= orderDetails[i].amount;
+                totals.Add(total);
+            }
+
+            double orderSubtotal = 0;
+            for (int i = 0; i < totals.Count; i++)
+            {
+                orderSubtotal += totals[i];
+            }
+            double orderTotal = Math.Round(orderSubtotal * 1.06, 2);
+
+            string date = "";
+            string dateVal = "";
+            if (!isCash)
+            {
+                date = "Order_Payment_Date, ";
+                dateVal = ", @PayDate";
+            }
+
+            string query = "INSERT INTO Order (Customer_ID, Order_SubTotal, "+
+                "Order_Total, Order_Status, Order_Date, Payment_Info_ID, " + date + ") " +
+                    "VALUES (@CustID, @SubTotal, @Total, @Status, @Date, @PaymentID" + dateVal + ")";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+            DateTime time = DateTime.Now;
+            cmd.Parameters.AddWithValue("@CustID", custID);
+            cmd.Parameters.AddWithValue("@SubTotal", orderSubtotal);
+            cmd.Parameters.AddWithValue("@Total", orderTotal);
+            cmd.Parameters.AddWithValue("@Status", isCash ? "Paid" : "Ordered");
+            cmd.Parameters.AddWithValue("@Date", time);
+            cmd.Parameters.AddWithValue("@PaymentID", paymentID);
+            cmd.Parameters.AddWithValue("@PayDate", time);
+
+            int worked = cmd.ExecuteNonQuery();
+
+            query = "SELECT Order_ID FROM Order WHERE Customer_ID = @CustID AND Order_Date = @Date";
+            cmd.CommandText = query;
+
+            int orderID = -1;
+
+            using (OleDbDataReader reader = cmd.ExecuteReader())
+            {
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    orderID = int.Parse(reader["Order_ID"].ToString());
+                }
+
+                // Call Close when done reading.
+                reader.Close();
+            }
+
+            for (int i = 0; i < orderDetails.Count; i++)
+            {
+                query = "INSERT INTO OrderDetails (Order_ID, ";
+                string vals = "VALUES (@OrderID, ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@OrderID", orderID);
+                if (orderDetails[i].menuID != -1)
+                {
+                    query += "Item_ID, ";
+                    vals += "@ItemID, ";
+                    cmd.Parameters.AddWithValue("@ItemID", orderDetails[i].menuID);
+                }
+                if (orderDetails[i].sideID != -1)
+                {
+                    query += "Side_ID, ";
+                    vals += "@SideID, ";
+                    cmd.Parameters.AddWithValue("@SideID", orderDetails[i].sideID);
+                }
+                if (orderDetails[i].drinkID != -1)
+                {
+                    query += "Drink_ID, ";
+                    vals += "@DrinkID, ";
+                    cmd.Parameters.AddWithValue("@DrinkID", orderDetails[i].drinkID);
+                }
+
+                query = "Amount_Ordered, Total_Cost) " +
+                    vals + " @Amount, @Total)";
+                cmd.CommandText = query;
+               
+                cmd.Parameters.AddWithValue("@Amount", "Ordered");
+                cmd.Parameters.AddWithValue("@Total", DateTime.Now);
+
+                int executed = cmd.ExecuteNonQuery();
+                if (executed == 0) return false;
+            }
+
+            if (worked == 0) return false;
+            else return true;
         }
 
-        public void ProcessPayment()
+        public int ProcessPayment(bool isCash, PaymentInfo info)
         {
+            string query = "INSERT INTO PaymentInfo (Info_Was_Cash, " +
+                "Info_Address, Info_City, Info_Zip_Code, Info_State, Info_Country, Info_Paid_In_Full) " +
+                    "VALUES (@IsCash, @Address, @City, @Zip, @State, @Country, @Paid)";
+            OleDbCommand cmd = new OleDbCommand(query, con);
+            cmd.Parameters.AddWithValue("@IsCash", isCash);
+            cmd.Parameters.AddWithValue("@Address", info.address);
+            cmd.Parameters.AddWithValue("@City", info.city);
+            cmd.Parameters.AddWithValue("@Zip", info.zipcode);
+            cmd.Parameters.AddWithValue("@State", info.state);
+            cmd.Parameters.AddWithValue("@Country", info.country);
+            cmd.Parameters.AddWithValue("@Paid", !isCash);
 
+            int worked = cmd.ExecuteNonQuery();
+
+            if (worked == 0) return -1;
+
+            query = "SELECT Payment_Info_ID FROM PaymentInfo WHERE Info_Address = @Address AND Info_City = @City" +
+                " AND Info_Zip_Code = @Zip AND Info_State = @State AND Info_Country = @Country";
+            cmd.CommandText = query;
+
+            int paymentID = -1;
+
+            using (OleDbDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    paymentID = int.Parse(reader["Payment_Info_ID"].ToString());
+                }
+
+                reader.Close();
+            }
+            return paymentID;
         }
 
         public void ViewOrderDetailsList()
@@ -311,5 +515,35 @@ namespace CapstoneProject
         }
 
 
+    }
+    public struct OrderDetail
+    {
+        OrderDetail(int menuid = -1, int sideid = -1, int drinkid = -1, int amt = 1)
+        {
+            menuID = menuid;
+            sideID = sideid;
+            drinkID = drinkid;
+            amount = amt;
+        }
+        public int menuID { get; set; }
+        public int sideID { get; set; }
+        public int drinkID { get; set; }
+        public int amount { get; set; }
+    }
+    public struct PaymentInfo
+    {
+        PaymentInfo(string add, string c, string zip, string s, string cy)
+        {
+            address = add;
+            city = c;
+            zipcode = zip;
+            state = s;
+            country = cy;
+        }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string zipcode { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
     }
 }
