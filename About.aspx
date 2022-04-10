@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="CapstoneProject.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
-    </h2>
-    <h3>Your application description page.</h3>
-    <p>Use this area to provide additional information.</p>
+    VirtU Food Delivery is an aspiring online food ordering service that can deliver a variety of food straight to your door!<br/>
+    <br />
+    VirtU Food Delivery was founded in 2022.<br/>
 </asp:Content>

@@ -13,5 +13,10 @@ namespace CapstoneProject
         {
 
         }
+
+        protected void btnAbout_Click(System.Object sender, System.EventArgs e)
+        {
+            Server.Transfer("About.aspx");
+        }
     }
 }
