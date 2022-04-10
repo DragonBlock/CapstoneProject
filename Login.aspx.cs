@@ -30,6 +30,14 @@ namespace CapstoneProject
             else
             {
                 e.Authenticated = true;
+                if (userID.Key == AccountType.Customer)
+                {
+                    // Goto View account
+                }
+                else
+                {
+                    // Goto Admin
+                }
             } 
         }
     }

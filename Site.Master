@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> VirtU Food Delivery</title>
+    <title><%: Page.Title %>VirtU Food Delivery</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -22,12 +22,14 @@
 
         .header-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-            width: 100%;
-            height: 50%;
+            width: 114%;
+            height: 355px;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            top: 11px;
+            left: 18px;
         }
 
         .header-text {
@@ -74,7 +76,8 @@
         }
 
         #btnNarrate {
-            height: 45px;
+            height: 83px;
+            width: 203px;
         }
     </style>
 </head>
@@ -101,21 +104,14 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="header-image">
-            <img alt="Pizza Closeup" src="file:///C:/Users/DamionShirkey/Desktop/Pizza.jpg" />
-            <div class="header-text">
-                <h1>VirtU Food</h1>
-            </div>
-        </div>
-
         <section>
-            <div class="leftMenu">
-                <input id="btnNarrate" type="button" value="Turn On/Off Narration" />
+            <div class="leftMenu" aria-expanded="true" aria-hidden="True" aria-orientation="horizontal" draggable="true">
+                &nbsp;<asp:Image ID="Image3" runat="server" BorderStyle="None" Height="479px" ImageAlign="Left" ImageUrl="~/Images/pexels-valeria-boltneva-1199959.jpg" Width="579px" />
             </div>
 
-            <div class="container body-content">
+            <div class="body-content">
                 <div class="navbar">
-                    <asp:Button ID="btnHome" Text="Home" runat="server" />
+                    <asp:Button ID="btnHome" Text="Home" runat="server" OnClick="btnHome_Click" />
                     <asp:Button ID="btnMenu" Text="Menu" runat="server" />
                     <asp:Button ID="btnCart" Text="See Cart" runat="server" />
                     <asp:Button ID="btnCheckout" Text="Checkout" runat="server" />
@@ -126,14 +122,17 @@
                     <asp:Button ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" />
                 </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    <p>
+                        &nbsp;</p>
                 </asp:ContentPlaceHolder>
+                <asp:Image ID="Image1" runat="server" Height="387px" ImageUrl="~/Images/pexels-elli-1854652.jpg" Width="598px" />
             </div>
-
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - VirtU Food Delivery</p>
-            </footer>
         </section>
     </form>
+
+    <p>
+        <input id="btnNarrate" type="button" value="Turn On/Off Narration" dir="rtl" /></p>
+                <p>&copy; <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>- VirtU Food Delivery</p>
 
 </body>
 </html>

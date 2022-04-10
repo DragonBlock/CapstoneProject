@@ -123,6 +123,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Images\Lemonade.jpg" />
+    <Content Include="Images\pexels-elli-1854652.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\pexels-roman-odintsov-4869359.jpg" />
+    <Content Include="Images\pexels-valeria-boltneva-1199959.jpg" />
     <Content Include="Login.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

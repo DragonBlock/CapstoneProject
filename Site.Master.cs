@@ -18,5 +18,10 @@ namespace CapstoneProject
         {
             Server.Transfer("About.aspx");
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Default.aspx");
+        }
     }
 }
