@@ -27,8 +27,8 @@ namespace CapstoneProject
         // Connection method
         public void ConnectToDatabase(string path)
         {
-            con.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;" +
-                                    @"Data source=" + path;
+            con.ConnectionString = @"Provider = Microsoft.Jet.OLEDB.4.0;" +
+                                    @"Data Source = FoodOrderingDB.mdb";
             con.Open();
         }
 
