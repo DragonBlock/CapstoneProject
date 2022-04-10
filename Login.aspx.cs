@@ -13,13 +13,24 @@ namespace CapstoneProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //accessor.ConnectToDatabase();
+            accessor = new DatabaseAccessor();
+            accessor.ConnectToDatabase(Server.MapPath("/")+ "FoodOrderingDB.mdb");
         }
 
         protected void LoginToWebsite_Authenticate(object sender, AuthenticateEventArgs e)
         {
-
-            
+            KeyValuePair<AccountType, int> userID = 
+                accessor.ValidateLogin(LoginToWebsite.UserName, LoginToWebsite.Password);
+            if(userID.Value == -1)
+            {
+                LoginToWebsite.InstructionText = "Invalid username/password.";
+                LoginToWebsite.InstructionTextStyle.ForeColor = System.Drawing.Color.RosyBrown;
+                e.Authenticated = false;
+            }
+            else
+            {
+                e.Authenticated = true;
+            } 
         }
     }
 }

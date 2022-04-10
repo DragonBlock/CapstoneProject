@@ -28,7 +28,7 @@ namespace CapstoneProject
         public void ConnectToDatabase(string path)
         {
             con.ConnectionString = @"Provider = Microsoft.Jet.OLEDB.4.0;" +
-                                    @"Data Source = FoodOrderingDB.mdb";
+                                    @"Data Source = "+ path;
             con.Open();
         }
 
@@ -258,6 +258,7 @@ namespace CapstoneProject
 
             query = "SELECT Employee_ID, Employee_Username, Employee_Password FROM Employee";
             cmd.CommandText = query;
+
             using (OleDbDataReader reader = cmd.ExecuteReader())
             {
                 // Call Read before accessing data.
