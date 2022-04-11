@@ -4253,7 +4253,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border: 1px solid transparent;
     top: -49px;
     left: 8px;
-    width: 1539px;
+    width: 35%;
 }
 @media (min-width: 768px) {
   .navbar {

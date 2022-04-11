@@ -2,30 +2,46 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        .MenuItem 
-        { 
-            width: 10%; height: 20%; float: left;
+        .menuNav {
+            background-color: #333;
+            overflow: hidden;
+            width: 100%;
+            float: left;
         }
-        .MenuImage 
-        {
-            height: 80%; width: 100%;
-        }
-        .MenuLabel 
-        {
+
+        .menuLink {
+            float: left;
+            background-color: lightslategray;
+            color: #f2f2f2;
             text-align: center;
-            width: 100%;
-            height: 10%;
+            padding: 12px 14px;
+            text-decoration: none;
+            font-size: 15px;
+            width: 8%;
         }
-        .MenuButton 
-        {
-            width: 100%;
-            height: 10%;
+
+        .menuLink:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .menuLink:active {
+            background-color: lightslategray;
+            color: white;
+        }
+
+        #btnMenu {
+            background-color: royalblue;
+        }
+
+        #btnDrinks {
+            background-color: royalblue;
         }
     </style>
-    <div class="navbar">
-        <asp:Button ID="btnMeals" Text="Meals" runat="server" />
-        <asp:Button ID="btnSides" Text="Sides" runat="server" />
-        <asp:Button ID="btnDrinks" Text="Drinks" runat="server" />
+    <div class="menuNav">
+        <asp:Button CssClass="menuLink" ID="btnMeals" Text="Meals" runat="server" OnClick="btnMeals_Click" />
+        <asp:Button CssClass="menuLink" ID="btnSides" Text="Sides" runat="server" OnClick="btnSides_Click" />
+        <asp:Button CssClass="menuLink" ID="btnDrinks" Text="Drinks" runat="server" />
     </div>
     <div class="content">
         <asp:Panel ID="MainPanel" style="width:100%; height:80%;" runat="server">

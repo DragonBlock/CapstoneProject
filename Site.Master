@@ -24,11 +24,13 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            top: -54px;
+            left: 0px;
         }
 
         .header-text {
             text-align: left;
-            position: fixed;
+            position: absolute;
             top: 10%;
             left: 5%;
             color: white;
@@ -83,6 +85,7 @@
         }
 
         .auto-style2 {
+            position: absolute;
             width: 351px;
             height: 91px;
         }
@@ -92,7 +95,7 @@
             width: 90%; 
         }
 
-                .navbar {
+        .navbar {
             background-color: #333;
             overflow: hidden;
             width: 100%;
@@ -116,8 +119,12 @@
         }
 
         .tabLink:active {
-            background-color: #04AA6D;
+            background-color: #333;
             color: white;
+        }
+        .auto-style3 {
+            width: 346px;
+            height: 325px;
         }
     </style>
 </head>
@@ -151,10 +158,11 @@
         </div>
         <section>
             <div class="leftMenu" aria-expanded="true" aria-hidden="True" aria-orientation="horizontal" draggable="true">
+                <img alt="Chocolate Pie" class="auto-style3" src="/Images/pexels-elli-1854652.jpg" />
                 <audio controls autoplay">
                     <source src="Audio/speech.wav" type="audio/wav">
                     Your browser does not support the audio element.
-                </audio>
+                    </audio>
                 <br/><asp:Label ID="Label1" runat="server" Text="Make Sure to Turn on AutoPlay"></asp:Label>
             </div>
 
@@ -181,6 +189,5 @@
         </section>
     </form>
     <p>&copy; <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>- VirtU Food Delivery</p>
-
 </body>
 </html>
