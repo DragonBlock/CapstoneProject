@@ -17,6 +17,8 @@ namespace CapstoneProject
         public DatabaseAccessor accessor;
         SpeechSynthesizer synthesizer;
 
+        string textToSay = "Home";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies.Count == 0)
@@ -75,8 +77,6 @@ namespace CapstoneProject
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
 
-            string text = "hello there";
-
             //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.Create);
 
             this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
@@ -134,11 +134,6 @@ namespace CapstoneProject
             Response.Redirect("ViewAccount.aspx");
         }
 
-        protected void btnNarrate_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private async Task TTS()
         {
             // you can set output file name as method argument or generated from text
@@ -148,7 +143,7 @@ namespace CapstoneProject
                 using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
                 {
                     speechSynthesizer.SetOutputToWaveFile(Server.MapPath("/Audio/") + fileName + ".wav");
-                    speechSynthesizer.Speak("All we need to do is to make sure we keep talking");
+                    speechSynthesizer.Speak(textToSay);
                 }
             });
             await task;
