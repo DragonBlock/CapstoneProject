@@ -173,5 +173,15 @@ namespace CapstoneProject
             });
             await task;
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Checkout.aspx");
+        }
+
+        protected void btnCart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SeeCart.aspx");
+        }
     }
 }

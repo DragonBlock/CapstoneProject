@@ -162,8 +162,8 @@
                 <div class="navbar">
                     <asp:Button CssClass="tabLink" ID="btnMenu" Text="Menu" runat="server" OnClick="btnMenu_Click" UseSubmitBehavior="False" />
                     <asp:Button CssClass="tabLink" ID="btnHome" Text="Home" runat="server" OnClick="btnHome_Click" UseSubmitBehavior="False" />
-                    <asp:Button CssClass="tabLink" ID="btnCart" Text="See Cart" runat="server" UseSubmitBehavior="False" />
-                    <asp:Button CssClass="tabLink" ID="btnCheckout" Text="Checkout" runat="server" UseSubmitBehavior="False" />
+                    <asp:Button CssClass="tabLink" ID="btnCart" Text="See Cart" runat="server" UseSubmitBehavior="False" OnClick="btnCart_Click" />
+                    <asp:Button CssClass="tabLink" ID="btnCheckout" Text="Checkout" runat="server" UseSubmitBehavior="False" OnClick="btnCheckout_Click" />
                     <asp:Button CssClass="tabLink" ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" UseSubmitBehavior="False" />
                     <asp:Button CssClass="tabLink" ID="btnSignUp0" runat="server" Text="Sign Up" UseSubmitBehavior="False" OnClick="btnSignUp_Click" />
                     <asp:Button CssClass="tabLink" ID="btnAccount0" runat="server" Text="View Account" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />

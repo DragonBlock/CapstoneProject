@@ -13,6 +13,7 @@ namespace CapstoneProject
         DatabaseAccessor accessor;
         protected void Page_Load(object sender, EventArgs e)
         {
+
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
 
@@ -57,7 +58,20 @@ namespace CapstoneProject
 
         protected void Item_Click(object sender, EventArgs e)
         {
+            Button b = sender as Button;
 
+            if (Request.Cookies["Drink"] == null)
+            {
+                HttpCookie cookie = new HttpCookie("Drink", "DrinkItems");
+                cookie.Values.Add("0", b.ID);
+                Response.AppendCookie(cookie);
+            }
+            else
+            {
+                HttpCookie cookie = Request.Cookies["Drink"];
+                cookie.Values.Add("" + cookie.Values.Count, b.ID);
+                Response.SetCookie(cookie);
+            }
         }
 
         protected void btnMeals_Click(object sender, EventArgs e)

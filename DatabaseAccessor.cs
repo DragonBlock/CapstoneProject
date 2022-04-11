@@ -426,71 +426,72 @@ namespace CapstoneProject
 
             if (paymentID == -1) return false;
 
-            List<double> totals = new List<double>();
+            List<decimal> totals = new List<decimal>();
 
             for (int i = 0; i < orderDetails.Count; i++)
             {
-                double total = 0;
+                decimal total = 0;
                 if (orderDetails[i].menuID != -1)
                 {
-                    total += GetItemDetails(ItemType.Main, orderDetails[i].menuID).Rows[0].Field<double>("Item_Price");
+                    total += GetItemDetails(ItemType.Main, orderDetails[i].menuID).Rows[0].Field<decimal>("Item_Price");
                 }
                 if (orderDetails[i].sideID != -1)
                 {
-                    total += GetItemDetails(ItemType.Side, orderDetails[i].sideID).Rows[0].Field<double>("Side_Price");
+                    total += GetItemDetails(ItemType.Side, orderDetails[i].sideID).Rows[0].Field<decimal>("Side_Price");
                 }
                 if (orderDetails[i].drinkID != -1)
                 {
-                    total += GetItemDetails(ItemType.Drink, orderDetails[i].menuID).Rows[0].Field<double>("Drink_Cost");
+                    total += GetItemDetails(ItemType.Drink, orderDetails[i].menuID).Rows[0].Field<decimal>("Drink_Cost");
                 }
                 total *= orderDetails[i].amount;
                 totals.Add(total);
             }
 
-            double orderSubtotal = 0;
+            decimal orderSubtotal = 0;
             for (int i = 0; i < totals.Count; i++)
             {
                 orderSubtotal += totals[i];
             }
-            double orderTotal = Math.Round(orderSubtotal * 1.06, 2);
+            double orderTotal = Math.Round((double)(orderSubtotal) * 1.06, 2);
 
             string date = "";
             string dateVal = "";
             if (!isCash)
             {
-                date = "Order_Payment_Date, ";
+                date = ", Order_Payment_Date";
                 dateVal = ", @PayDate";
             }
 
             string query = "INSERT INTO OrderTable (Customer_ID, Order_SubTotal, " +
-                "Order_Total, Order_Status, Order_Date, Payment_Info_ID, " + date + ") " +
-                    "VALUES (@CustID, @SubTotal, @Total, @Status, @Date, @PaymentID" + dateVal + ")";
+                "Order_Total, Order_Status, Payment_Info_ID, Order_Processed_By_Employee_ID" +  ") " +
+                    "VALUES (@CustID, @SubTotal, @Total, @Status, @PaymentID, @emp"+ ")";
             OleDbCommand cmd = new OleDbCommand(query, con);
             DateTime time = DateTime.Now;
             cmd.Parameters.AddWithValue("@CustID", custID);
             cmd.Parameters.AddWithValue("@SubTotal", orderSubtotal);
             cmd.Parameters.AddWithValue("@Total", orderTotal);
             cmd.Parameters.AddWithValue("@Status", isCash ? "Paid" : "Ordered");
-            cmd.Parameters.AddWithValue("@Date", time);
+            //cmd.Parameters.AddWithValue("@Date", time);
             cmd.Parameters.AddWithValue("@PaymentID", paymentID);
-            cmd.Parameters.AddWithValue("@PayDate", time);
+            cmd.Parameters.AddWithValue("@emp", 1);
+            //cmd.Parameters.AddWithValue("@PayDate", time);
 
             int worked = cmd.ExecuteNonQuery();
 
-            query = "SELECT Order_ID FROM OrderTable WHERE Customer_ID = @CustID AND Order_Date = @Date";
-            cmd.CommandText = query;
+            query = "SELECT Order_ID FROM OrderTable WHERE Customer_ID = @CustID";
+            cmd = new OleDbCommand(query, con);
+            cmd.Parameters.AddWithValue("@CustID", custID);
 
             int orderID = -1;
 
             using (OleDbDataReader reader = cmd.ExecuteReader())
             {
-                // Call Read before accessing data.
-                while (reader.Read())
-                {
-                    orderID = int.Parse(reader["Order_ID"].ToString());
-                }
+                DataTable searchResult = new DataTable();
 
-                // Call Close when done reading.
+                searchResult.Load(reader);
+
+                orderID = searchResult.Rows[0].Field<int>("Order_ID");
+
                 reader.Close();
             }
 
@@ -552,18 +553,19 @@ namespace CapstoneProject
 
             if (worked == 0) return -1;
 
-            query = "SELECT Payment_Info_ID FROM PaymentInfo WHERE Info_Address = @Address AND Info_City = @City" +
-                " AND Info_Zip_Code = @Zip AND Info_State = @State AND Info_Country = @Country";
-            cmd.CommandText = query;
+            query = "SELECT Payment_Info_ID FROM PaymentInfo WHERE Info_Address = @Address";
+            cmd = new OleDbCommand(query, con);
+            cmd.Parameters.AddWithValue("@Address", info.address);
 
             int paymentID = -1;
 
             using (OleDbDataReader reader = cmd.ExecuteReader())
             {
-                while (reader.Read())
-                {
-                    paymentID = int.Parse(reader["Payment_Info_ID"].ToString());
-                }
+                DataTable searchResult = new DataTable();
+
+                searchResult.Load(reader);
+
+                paymentID = searchResult.Rows[0].Field<int>("Payment_Info_ID");
 
                 reader.Close();
             }
@@ -708,7 +710,7 @@ namespace CapstoneProject
     }
     public struct OrderDetail
     {
-        OrderDetail(int menuid = -1, int sideid = -1, int drinkid = -1, int amt = 1)
+        public OrderDetail(int menuid = -1, int sideid = -1, int drinkid = -1, int amt = 1)
         {
             menuID = menuid;
             sideID = sideid;
@@ -722,7 +724,7 @@ namespace CapstoneProject
     }
     public struct PaymentInfo
     {
-        PaymentInfo(string add, string c, string zip, string s, string cy)
+        public PaymentInfo(string add, string c, string zip, string s, string cy)
         {
             address = add;
             city = c;
