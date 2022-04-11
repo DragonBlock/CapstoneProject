@@ -24,11 +24,12 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            top: 0px;
         }
 
         .header-text {
             text-align: left;
-            position: fixed;
+            position: absolute;
             top: 10%;
             left: 5%;
             color: white;
@@ -80,9 +81,11 @@
         .auto-style1 {
             width: 100%;
             height: 100%;
+            top: 0px;
         }
 
         .auto-style2 {
+            position: absolute;
             width: 351px;
             height: 91px;
         }
@@ -119,6 +122,10 @@
             background-color: #333;
             color: white;
         }
+        .auto-style3 {
+            width: 346px;
+            height: 325px;
+        }
     </style>
 </head>
 
@@ -151,10 +158,11 @@
         </div>
         <section>
             <div class="leftMenu" aria-expanded="true" aria-hidden="True" aria-orientation="horizontal" draggable="true">
+                <img alt="Chocolate Pie" class="auto-style3" src="/Images/pexels-elli-1854652.jpg" />
                 <audio controls autoplay">
                     <source src="Audio/speech.wav" type="audio/wav">
                     Your browser does not support the audio element.
-                </audio>
+                    </audio>
                 <br/><asp:Label ID="Label1" runat="server" Text="Make Sure to Turn on AutoPlay"></asp:Label>
             </div>
 
