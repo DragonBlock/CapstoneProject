@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Checkout" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="CapstoneProject.Checkout" %>
+﻿<%@ Page Title="Checkout" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="CapstoneProject.Checkout" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div style="float: right; background-color: #ccc; height: 265px; width: 25%; margin-right: 20px; margin-bottom: 20px; margin-top: 40px">

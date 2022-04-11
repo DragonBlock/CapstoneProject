@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Menu-Sides" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuSides.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
+﻿<%@ Page Title="Menu-Sides" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuSides.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="navbar">

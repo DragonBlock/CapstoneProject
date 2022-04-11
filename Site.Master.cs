@@ -77,7 +77,7 @@ namespace CapstoneProject
 
             string text = "hello there";
 
-            //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.OpenOrCreate);
+            //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.Create);
 
             this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
         }

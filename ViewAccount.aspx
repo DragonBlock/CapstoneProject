@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewAccount.aspx.cs" Inherits="CapstoneProject.ViewAccount" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewAccount.aspx.cs" Inherits="CapstoneProject.ViewAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     Username:<asp:Label ID="lblUsername" runat="server" Text="Label"></asp:Label>
