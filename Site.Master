@@ -70,11 +70,10 @@
         }
 
         #btnNarrate {
-            position: fixed;
-            top: 303px;
-            right: 1458px;
-            width: 329px;
-            height: 5%;
+            top: 30%;
+            left: 1%;
+            width: 220px;
+            height: 50px;
             bottom: 20px;
         }
 
@@ -119,7 +118,11 @@
         </div>
         <section>
             <div class="leftMenu" aria-expanded="true" aria-hidden="True" aria-orientation="horizontal" draggable="true">
-                <input id="btnNarrate" type="button" value="Turn On/Off Narration" dir="rtl" />
+                <asp:Button ID="btnNarrate" runat="server" Text="Turn On/Off Narration" OnClick="btnNarrate_Click" />
+                <audio autoplay>
+                    <source src="speech.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio> 
             </div>
 
             <div class="body-content">

@@ -5,12 +5,17 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Speech;
+using System.Speech.Synthesis;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace CapstoneProject
 {
     public partial class SiteMaster : MasterPage
     {
         public DatabaseAccessor accessor;
+        SpeechSynthesizer synthesizer;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -69,6 +74,12 @@ namespace CapstoneProject
             }
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
+
+            string text = "hello there";
+
+            //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.OpenOrCreate);
+
+            this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
         }
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
@@ -121,6 +132,26 @@ namespace CapstoneProject
         protected void btnAccount0_Click(object sender, EventArgs e)
         {
             Response.Redirect("ViewAccount.aspx");
+        }
+
+        protected void btnNarrate_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async Task TTS()
+        {
+            // you can set output file name as method argument or generated from text
+            string fileName = "speech";
+            Task task = Task.Run(() =>
+            {
+                using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
+                {
+                    speechSynthesizer.SetOutputToWaveFile(Server.MapPath("/Audio/") + fileName + ".wav");
+                    speechSynthesizer.Speak("All we need to do is to make sure we keep talking");
+                }
+            });
+            await task;
         }
     }
 }
