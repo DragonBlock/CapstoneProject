@@ -24,7 +24,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
-            top: 0px;
+            top: -54px;
+            left: 0px;
         }
 
         .header-text {
@@ -81,7 +82,6 @@
         .auto-style1 {
             width: 100%;
             height: 100%;
-            top: 0px;
         }
 
         .auto-style2 {

@@ -6,7 +6,7 @@
             background-color: royalblue;
         }
     </style>
-    <div style="float: right; background-color: #ccc; height: 275px; width: 25%; margin-right: 20px; margin-top: 40px">
+    <div style="float: right; background-color: #ccc; height: 210px; width: 25%; margin-right: 20px; top: 40px; position: static; top: 272px; left: 2007px;">
     </div>
     <div style="margin-top: 20px;">
         <label for="payment">Payment Method: </label>
@@ -39,7 +39,7 @@
         <p style="float: left; text-align: right; width: 6%;">Country: </p>
         <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
         <div style="float: right; margin-right: 8%; width: 10%; margin-bottom: 20px">
-            <asp:Button ID="btnCheckout" runat="server" Text="Checkout" Width="100%" />
+            <asp:Button ID="btnOrder" runat="server" Text="Checkout" Width="100%" />
         </div>
     </div>
 </asp:Content>
