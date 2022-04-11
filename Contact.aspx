@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Contact" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="CapstoneProject.Contact" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        #Contactbtn {
+            background-color: royalblue;
+        }
+    </style>
     <h2 style="font-family: 'kristen ITC'; font-size: medium">PLEAS REACH OUT TO US THROUGH EMAIL</h2>
 <p style="font-family: 'kristen ITC'; font-size: medium">AND WE WILL GET BACK TO YOU AS SOON AS POSSIBLE</p>
 <h2 style="font-family: 'kristen ITC'; font-size: medium">Davenport University</h2>

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CapstoneProject
 {
-    public partial class MenuSides : Page
+    public partial class SeeCart : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewAccount.aspx.cs" Inherits="CapstoneProject.ViewAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <style>
+        #btnAccount0 {
+            background-color: royalblue;
+        }
+    </style>
     Username:<asp:Label ID="lblUsername" runat="server" Text="Label"></asp:Label>
 <br />
 Email:<asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label>

@@ -79,7 +79,7 @@ namespace CapstoneProject
 
             //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.Create);
 
-            this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
+            //this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
         }
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
@@ -152,6 +152,16 @@ namespace CapstoneProject
                 }
             });
             await task;
+        }
+
+        protected void btnCart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SeeCart.aspx");
+        }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Checkout.aspx");
         }
     }
 }

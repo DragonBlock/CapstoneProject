@@ -29,7 +29,7 @@ namespace CapstoneProject
         {
             con.ConnectionString = @"Provider = Microsoft.Jet.OLEDB.4.0;" +
                                     @"Data Source = "+ path;
-            con.Open();
+            //con.Open();
         }
 
         // Destructor

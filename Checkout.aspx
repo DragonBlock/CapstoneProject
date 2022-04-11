@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Checkout" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="CapstoneProject.Checkout" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        #btnCheckout {
+            background-color: royalblue;
+        }
+    </style>
     <div style="float: right; background-color: #ccc; height: 275px; width: 25%; margin-right: 20px; margin-top: 40px">
     </div>
     <div style="margin-top: 20px;">
