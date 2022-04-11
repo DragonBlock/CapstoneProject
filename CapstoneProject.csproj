@@ -133,6 +133,12 @@
   <ItemGroup>
     <Content Include="Checkout.aspx" />
     <Content Include="FoodOrderingDB.mdb" />
+    <Content Include="Images\Boneless_Wings.jpg" />
+    <Content Include="Images\ChickenPasta.jpg" />
+    <Content Include="Images\DoubleCheeseburger.jpg" />
+    <Content Include="Images\Ribs.jpg" />
+    <Content Include="Images\ShrimpTacos.jpg" />
+    <Content Include="Images\Steak.jpg" />
     <Content Include="SeeCart.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="MenuDrinks.aspx" />

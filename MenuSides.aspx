@@ -1,53 +1,35 @@
-﻿<%@ Page Title="Menu-Sides" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuSides.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
+﻿<%@ Page Title="MenuSides" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuSides.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        .menuNav {
-            background-color: #333;
-            overflow: hidden;
-            width: 100%;
-            float: left;
+        .MenuItem 
+        { 
+            width: 10%; height: 20%; float: left;
         }
-
-        .menuLink {
-            float: left;
-            background-color: lightslategray;
-            color: #f2f2f2;
+        .MenuImage 
+        {
+            height: 80%; width: 100%;
+        }
+        .MenuLabel 
+        {
             text-align: center;
-            padding: 12px 14px;
-            text-decoration: none;
-            font-size: 15px;
-            width: 8%;
+            width: 100%;
+            height: 10%;
         }
-
-        .menuLink:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .menuLink:active {
-            background-color: lightslategray;
-            color: white;
-        }
-
-        #btnMenu {
-            background-color: royalblue;
-        }
-
-        #btnSides {
-            background-color: royalblue;
+        .MenuButton 
+        {
+            width: 100%;
+            height: 10%;
         }
     </style>
-    <div class="menuNav">
-        <asp:Button CssClass="menuLink" ID="btnMeals" Text="Meals" runat="server" OnClick="btnMeals_Click" />
-        <asp:Button CssClass="menuLink" ID="btnSides" Text="Sides" runat="server" />
-        <asp:Button CssClass="menuLink" ID="btnDrinks" Text="Drinks" runat="server" OnClick="btnDrinks_Click" />
+    <div class="navbar">
+        <asp:Button ID="btnMeals" Text="Meals" runat="server" />
+        <asp:Button ID="btnSides" Text="Sides" runat="server" />
+        <asp:Button ID="btnDrinks" Text="Drinks" runat="server" />
     </div>
-    <div class="content">
-        <figure class="menuItem" style="padding: 15px;">
-            <img alt="" src="" style="height: 15%; width: 10%;" />
-            <figcaption style="text-align: center; width: 10%;">Name</figcaption>
-            <input id="btnAddItem" type="button" value="Add To Order" style="width: 10%;" />
-        </figure>
+    <div class="content" >
+        <asp:Panel ID="MainPanel" style="width:100%; height:80%;" runat="server">
+
+        </asp:Panel>
     </div>
 </asp:Content>
