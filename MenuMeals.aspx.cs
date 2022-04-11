@@ -63,12 +63,12 @@ namespace CapstoneProject
 
         protected void btnSides_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Menu-Sides.aspx");
+            Response.Redirect("MenuSides.aspx");
         }
 
         protected void btnDrinks_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Menu-Drinks.aspx");
+            Response.Redirect("MenuDrinks.aspx");
         }
     }
 }

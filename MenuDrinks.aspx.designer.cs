@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapstoneProject {
-    
-    
-    public partial class MenuDrinks {
-        
+namespace CapstoneProject
+{
+
+
+    public partial class MenuDrinks
+    {
+
         /// <summary>
         /// btnMeals control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CapstoneProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnMeals;
-        
+
         /// <summary>
         /// btnSides control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CapstoneProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSides;
-        
+
         /// <summary>
         /// btnDrinks control.
         /// </summary>
