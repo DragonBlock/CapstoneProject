@@ -1,16 +1,35 @@
-﻿<%@ Page Title="Menu-Sides" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuSides.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
+﻿<%@ Page Title="MenuSides" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuSides.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        .MenuItem 
+        { 
+            width: 10%; height: 20%; float: left;
+        }
+        .MenuImage 
+        {
+            height: 80%; width: 100%;
+        }
+        .MenuLabel 
+        {
+            text-align: center;
+            width: 100%;
+            height: 10%;
+        }
+        .MenuButton 
+        {
+            width: 100%;
+            height: 10%;
+        }
+    </style>
     <div class="navbar">
         <asp:Button ID="btnMeals" Text="Meals" runat="server" />
         <asp:Button ID="btnSides" Text="Sides" runat="server" />
         <asp:Button ID="btnDrinks" Text="Drinks" runat="server" />
     </div>
-    <div class="content">
-        <figure class="menuItem" style="padding: 15px;">
-            <img alt="" src="" style="height: 15%; width: 10%;" />
-            <figcaption style="text-align: center; width: 10%;">Name</figcaption>
-            <input id="btnAddItem" type="button" value="Add To Order" style="width: 10%;" />
-        </figure>
+    <div class="content" >
+        <asp:Panel ID="MainPanel" style="width:100%; height:80%;" runat="server">
+
+        </asp:Panel>
     </div>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="CapstoneProject.SignUp" %>
+﻿<%@ Page Title="Sign Up" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="CapstoneProject.SignUp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <p style="text-align: center; font-size: 1.8em;">Sign Up</p>
     <div style="padding-left:25%; font-size: 1.5em;" class="text-left">

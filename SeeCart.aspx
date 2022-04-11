@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Menu-Sides" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SeeCart.aspx.cs" Inherits="CapstoneProject.MenuSides" %>
+﻿<%@ Page Title="Menu-Sides"  Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SeeCart.aspx.cs" Inherits="CapstoneProject.SeeCart" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="content">

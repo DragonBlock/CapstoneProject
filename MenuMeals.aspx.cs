@@ -27,7 +27,7 @@ namespace CapstoneProject
 
                 Image i = new Image();
                 i.ID = "img" + foodRow.Field<int>("Item_ID");
-                i.ImageUrl = Server.MapPath("/Images/") + foodRow.Field<string>("Item_Image");
+                i.ImageUrl = "~/Images/" + foodRow.Field<string>("Item_Image");
                 i.ImageAlign = ImageAlign.Middle;
                 i.CssClass = "MenuImage";
                 Label l = new Label();

@@ -8,18 +8,18 @@
         }
         .MenuImage 
         {
-            height: 16%; width: 10%;
+            height: 80%; width: 100%;
         }
         .MenuLabel 
         {
             text-align: center;
-            width: 10%;
-            height: 20%;
+            width: 100%;
+            height: 10%;
         }
         .MenuButton 
         {
-            width: 10%;
-            height: 20%;
+            width: 100%;
+            height: 10%;
         }
     </style>
     <div class="navbar">

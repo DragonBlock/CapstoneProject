@@ -15,10 +15,9 @@ namespace CapstoneProject
     public partial class SiteMaster : MasterPage
     {
         public DatabaseAccessor accessor;
-        SpeechSynthesizer synthesizer;
 
-        string textToSay = "Home";
-
+        string textToSay = "hi";
+        string fileName = "speak";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies.Count == 0)
@@ -33,7 +32,7 @@ namespace CapstoneProject
                 btnSignUp0.Enabled = true;
                 btnLogOut.Visible = false;
                 btnLogOut.Enabled = false;
-                
+
             }
             else if (Request.Cookies["LoginInfo"].Value.Contains("Customer"))
             {
@@ -77,9 +76,34 @@ namespace CapstoneProject
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
 
-            //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.Create);
 
-            this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
+
+            bool play = true;
+            switch (this.Page.Title) {
+                //case "Home Page":
+                //    textToSay = "Welcome to the home page!";
+                //    break;
+                case "MenuMeals":
+                    textToSay = "This is the menu page, you can pick and choose your favorite items";
+                    break;
+                case "Login":
+                    textToSay = "This is the Login page, please fill out your information, if you don't have account with us please go to the sign up page";
+                    break;
+                case "Sign Up":
+                    textToSay = "This is the Sign Up page, please fill out your information";
+                    break;
+                case "Contact":
+                    textToSay = "This is the contact page please email mhoekstra5@email.davenport.edu for any questions";
+                    break;
+                case "View Account":
+                    textToSay = "This is the view account page. Here you can change your password, email, or username.";
+                    break;
+                default:
+                    play = false;
+                    break;
+            }
+
+            if(play) this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
         }
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
@@ -90,7 +114,6 @@ namespace CapstoneProject
 
         protected void btnMenu_Click(System.Object sender, System.EventArgs e)
         {
-            string textToSay = "This is the menu page, you can pick and choose your favorite items";
             Response.Redirect("MenuMeals.aspx");
         }
 
@@ -101,19 +124,18 @@ namespace CapstoneProject
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string textToSayLogin = "This is the Login page, please fill out your information, if you don't have account with us please go to the sign up page";
             Response.Redirect("Login.aspx");
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-            string textToSaySignup = "This is the SignUp page, please fill out your information";
             Response.Redirect("SignUp.aspx");
         }
 
         protected void Contactbtn_Click(object sender, EventArgs e)
         {
-            string textToSayContact = "This is the contact page please email mhoekstra5@email.davenport.edu for any questions";
+            
+            this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
             Response.Redirect("Contact.aspx");
         }
 
@@ -135,14 +157,12 @@ namespace CapstoneProject
 
         protected void btnAccount0_Click(object sender, EventArgs e)
         {
-          
             Response.Redirect("ViewAccount.aspx");
         }
 
         private async Task TTS()
         {
             // you can set output file name as method argument or generated from text
-            string fileName = "speech";
             Task task = Task.Run(() =>
             {
                 using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())

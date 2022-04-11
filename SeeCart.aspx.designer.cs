@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapstoneProject
-{
-
-
-    public partial class MenuSides
-    {
+namespace CapstoneProject {
+    
+    
+    public partial class SeeCart {
     }
 }
