@@ -108,33 +108,41 @@ namespace CapstoneProject
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
         {
+            string textToSayAbout = "This is the an online food ordering website that can deliver delicious meal to your step door";
+
             Response.Redirect("About.aspx");
         }
 
 
         protected void btnMenu_Click(System.Object sender, System.EventArgs e)
         {
+            string textToSayMenu = "This is the Menu page where you can explore the menu choices";
             Response.Redirect("MenuMeals.aspx");
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
+            string textToSayHome = "This is the Home page, please go to the login page to sign in and place an order, if you don't have an account, go to the sign up page";
             Response.Redirect("Default.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            string textToSayLogin = "This is the Login Page, fill out your username and password to login";
             Response.Redirect("Login.aspx");
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+            string textToSaySignup = "This is the signup page, fill out the information to sign up for our srvices ";
             Response.Redirect("SignUp.aspx");
         }
 
         protected void Contactbtn_Click(object sender, EventArgs e)
-        {
             
+        {
+            string textToSayContact = "This is the contact page, please contact mhoekstra5@email.davenport.edu for any questions";
+
             this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
             Response.Redirect("Contact.aspx");
         }
@@ -157,6 +165,7 @@ namespace CapstoneProject
 
         protected void btnAccount0_Click(object sender, EventArgs e)
         {
+            string textToSayAccount = "This is the Account page, you can change your password or username, please add your old passsword first before adding new one, a sign out action is enforced";
             Response.Redirect("ViewAccount.aspx");
         }
 
