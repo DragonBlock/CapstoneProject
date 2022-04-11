@@ -133,6 +133,7 @@
   <ItemGroup>
     <Content Include="Checkout.aspx" />
     <Content Include="FoodOrderingDB.mdb" />
+    <Content Include="SeeCart.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="MenuDrinks.aspx" />
     <Content Include="MenuSides.aspx" />
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeeCart.aspx.cs">
+      <DependentUpon>SeeCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeeCart.aspx.designer.cs">
+      <DependentUpon>SeeCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
