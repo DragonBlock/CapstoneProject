@@ -21,6 +21,14 @@
             width: 100%;
             height: 10%;
         }
+
+        #btnMenu {
+            background-color: royalblue;
+        }
+
+        #btnMeals {
+            background-color: royalblue;
+        }
     </style>
     <div class="navbar">
         <asp:Button ID="btnMeals" Text="Meals" runat="server" />
