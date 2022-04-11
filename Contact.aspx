@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="CapstoneProject.Contact" %>
+﻿<%@ Page Title="Contact" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="CapstoneProject.Contact" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2 style="font-family: 'kristen ITC'; font-size: medium">PLEAS REACH OUT TO US THROUGH EMAIL</h2>
 <p style="font-family: 'kristen ITC'; font-size: medium">AND WE WILL GET BACK TO YOU AS SOON AS POSSIBLE</p>

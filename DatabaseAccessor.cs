@@ -42,7 +42,12 @@ namespace CapstoneProject
         // Disconnection method
         public void DisconnectFromDatabase()
         {
-            con.Close();
+            try
+            { con.Close(); }
+            catch
+            {
+
+            }
         }
 
         private string GetItemTypeTableName(ItemType itemType)

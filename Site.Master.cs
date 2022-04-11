@@ -17,6 +17,8 @@ namespace CapstoneProject
         public DatabaseAccessor accessor;
         SpeechSynthesizer synthesizer;
 
+        string textToSay = "Home";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies.Count == 0)
@@ -75,9 +77,7 @@ namespace CapstoneProject
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
 
-            string text = "hello there";
-
-            //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.OpenOrCreate);
+            //FileStream s = new FileStream(Server.MapPath("Audio/speech.wav"), FileMode.Create);
 
             this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
         }
@@ -90,6 +90,7 @@ namespace CapstoneProject
 
         protected void btnMenu_Click(System.Object sender, System.EventArgs e)
         {
+            string textToSay = "This is the menu page, you can pick and choose your favorite items";
             Response.Redirect("MenuMeals.aspx");
         }
 
@@ -100,16 +101,19 @@ namespace CapstoneProject
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            string textToSayLogin = "This is the Login page, please fill out your information, if you don't have account with us please go to the sign up page";
             Response.Redirect("Login.aspx");
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+            string textToSaySignup = "This is the SignUp page, please fill out your information";
             Response.Redirect("SignUp.aspx");
         }
 
         protected void Contactbtn_Click(object sender, EventArgs e)
         {
+            string textToSayContact = "This is the contact page please email mhoekstra5@email.davenport.edu for any questions";
             Response.Redirect("Contact.aspx");
         }
 
@@ -131,12 +135,8 @@ namespace CapstoneProject
 
         protected void btnAccount0_Click(object sender, EventArgs e)
         {
+          
             Response.Redirect("ViewAccount.aspx");
-        }
-
-        protected void btnNarrate_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private async Task TTS()
@@ -148,7 +148,7 @@ namespace CapstoneProject
                 using (SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer())
                 {
                     speechSynthesizer.SetOutputToWaveFile(Server.MapPath("/Audio/") + fileName + ".wav");
-                    speechSynthesizer.Speak("All we need to do is to make sure we keep talking");
+                    speechSynthesizer.Speak(textToSay);
                 }
             });
             await task;
