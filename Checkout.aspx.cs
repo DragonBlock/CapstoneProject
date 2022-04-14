@@ -184,6 +184,26 @@ namespace CapstoneProject
                 if (placed)
                 {
                     message.Text = "Order Placed.";
+
+                    HttpCookie currentUserCookie = HttpContext.Current.Request.Cookies["Menu"];
+                    HttpContext.Current.Response.Cookies.Remove("Menu");
+                    currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                    currentUserCookie.Value = null;
+                    HttpContext.Current.Response.SetCookie(currentUserCookie);
+
+                    currentUserCookie = HttpContext.Current.Request.Cookies["Side"];
+                    HttpContext.Current.Response.Cookies.Remove("Side");
+                    currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                    currentUserCookie.Value = null;
+                    HttpContext.Current.Response.SetCookie(currentUserCookie);
+
+                    currentUserCookie = HttpContext.Current.Request.Cookies["Drink"];
+                    HttpContext.Current.Response.Cookies.Remove("Drink");
+                    currentUserCookie.Expires = DateTime.Now.AddDays(-10);
+                    currentUserCookie.Value = null;
+                    HttpContext.Current.Response.SetCookie(currentUserCookie);
+
+                    Request.Cookies.Clear();
                     Response.Redirect("ViewAccount.aspx");
                 }
                 else message.Text = "Order Failed.";

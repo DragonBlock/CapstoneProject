@@ -27,7 +27,10 @@ namespace CapstoneProject
 
                 Image i = new Image();
                 i.ID = "img" + foodRow.Field<int>("Side_ID");
-                //i.ImageUrl = "~/Images/" + foodRow.Field<string>("Item_Image");
+                DataRow main = accessor.GetMenuWithSide(foodRow.Field<int>("Side_ID"));
+                if (main != null) {
+                    i.ImageUrl = "~/Images/" + main.Field<string>("Item_Image");
+                }
                 i.AlternateText = "";
                 i.ImageAlign = ImageAlign.Middle;
                 i.CssClass = "MenuImage";

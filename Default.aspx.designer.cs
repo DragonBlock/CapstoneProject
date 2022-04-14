@@ -7,11 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapstoneProject
-{
-
-
-    public partial class _Default
-    {
+namespace CapstoneProject {
+    
+    
+    public partial class _Default {
+        
+        /// <summary>
+        /// menuImg1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image menuImg1;
+        
+        /// <summary>
+        /// menuImg2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image menuImg2;
     }
 }

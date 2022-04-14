@@ -29,7 +29,7 @@ namespace CapstoneProject
         {
             con.ConnectionString = @"Provider = Microsoft.Jet.OLEDB.4.0;" +
                                     @"Data Source = "+ path;
-            //con.Open();
+            con.Open();
         }
 
         // Destructor
@@ -163,6 +163,22 @@ namespace CapstoneProject
 
             int sideID = GetItemDetails(ItemType.Main, itemID).Rows[0].Field<int>("Item_Default_Side_ID");
             return GetItemDetails(ItemType.Side, sideID);
+        }
+
+        public DataRow GetMenuWithSide(int sideID)
+        {
+            if (!IsConnectionOpen()) throw new Exception("Connection is Closed");
+
+            DataTable menu = GetItemList(ItemType.Main);
+            foreach (DataRow item in menu.Rows)
+            {
+                if (item.Field<int>("Item_Default_Side_ID") == sideID)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
 
         public DataTable GetItemList(ItemType type)

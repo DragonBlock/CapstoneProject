@@ -37,6 +37,25 @@
         #btnMeals {
             background-color: royalblue;
         }
+        .MenuItem 
+        { 
+            width: 10%; height: 20%; float: left;
+        }
+        .MenuImage 
+        {
+            height: 80%; width: 100%;
+        }
+        .MenuLabel 
+        {
+            text-align: center;
+            width: 100%;
+            height: 10%;
+        }
+        .MenuButton 
+        {
+            width: 100%;
+            height: 10%;
+        }
     </style>
     <div class="menuNav">
         <asp:Button CssClass="menuLink" ID="btnMeals" Text="Meals" runat="server" />

@@ -159,10 +159,10 @@
         <section>
             <div class="leftMenu" aria-expanded="true" aria-hidden="True" aria-orientation="horizontal" draggable="true">
                 <img alt="Chocolate Pie" class="auto-style3" src="/Images/pexels-elli-1854652.jpg" />
-                <audio controls autoplay">
+                <audio controls autoplay runat="server" id="audioSource">
                     <source src="Audio/speech.wav" type="audio/wav">
                     Your browser does not support the audio element.
-                    </audio>
+                </audio>
                 <br/><asp:Label ID="Label1" runat="server" Text="Make Sure to Turn on AutoPlay"></asp:Label>
             </div>
 

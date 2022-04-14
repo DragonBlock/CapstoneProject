@@ -17,7 +17,7 @@ namespace CapstoneProject
         public DatabaseAccessor accessor;
 
         string textToSay = "hi";
-        string fileName = "speak";
+        string fileName = "home";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies.Count == 0)
@@ -76,66 +76,97 @@ namespace CapstoneProject
             accessor = new DatabaseAccessor();
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
 
+            LoadNarration(this.Page.Title);
+        }
 
-
+        public void LoadNarration(string pageTitle)
+        {
             bool play = true;
-            switch (this.Page.Title) {
-                //case "Home Page":
-                //    textToSay = "Welcome to the home page!";
-                //    break;
+            switch (pageTitle)
+            {
+                case "Home Page":
+                    textToSay = "Welcome to the home page!";
+                    fileName = "home";
+                    break;
                 case "MenuMeals":
-                    textToSay = "This is the menu page, you can pick and choose your favorite items";
+                    textToSay = "This is the menu page, here you can pick and choose your favorite items to order";
+                    fileName = "menu";
                     break;
                 case "Login":
                     textToSay = "This is the Login page, please fill out your information, if you don't have account with us please go to the sign up page";
+                    fileName = "login";
                     break;
                 case "Sign Up":
                     textToSay = "This is the Sign Up page, please fill out your information";
+                    fileName = "signup";
                     break;
                 case "Contact":
                     textToSay = "This is the contact page please email mhoekstra5@email.davenport.edu for any questions";
+                    fileName = "contact";
                     break;
                 case "View Account":
                     textToSay = "This is the view account page. Here you can change your password, email, or username.";
+                    fileName = "view";
+                    break;
+                case "See Cart":
+                    textToSay = "This is the see cart page, here you can see what items are in your cart.";
+                    fileName = "cart";
+                    break;
+                case "Checkout":
+                    textToSay = "This is the checkout page, here you can see your final order and purchase it.";
+                    fileName = "check";
+                    break;
+                case "About":
+                    textToSay = "VirtU Food Delivery is an aspiring online food ordering service that can deliver"+
+                        " a variety of food straight to your door! VirtU Food Delivery was founded in 2022.";
+                    fileName = "check";
                     break;
                 default:
                     play = false;
                     break;
             }
 
-            if(play) this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
+            if (play)
+            {
+                this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
+            }
         }
+
 
         protected void btnAbout_Click(System.Object sender, System.EventArgs e)
         {
+            LoadNarration("About");
             Response.Redirect("About.aspx");
         }
 
 
         protected void btnMenu_Click(System.Object sender, System.EventArgs e)
         {
+            LoadNarration("MenuMeals");
             Response.Redirect("MenuMeals.aspx");
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
+            LoadNarration("Home Page");
             Response.Redirect("Default.aspx");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            LoadNarration("Login");
             Response.Redirect("Login.aspx");
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+            LoadNarration("Sign Up");
             Response.Redirect("SignUp.aspx");
         }
 
         protected void Contactbtn_Click(object sender, EventArgs e)
         {
-            
-            this.Page.RegisterAsyncTask(new PageAsyncTask(TTS));
+            LoadNarration("Contact");
             Response.Redirect("Contact.aspx");
         }
 
@@ -152,11 +183,13 @@ namespace CapstoneProject
             currentUserCookie.Value = null;
             HttpContext.Current.Response.SetCookie(currentUserCookie);
             Request.Cookies.Clear();
+            LoadNarration("Login");
             Response.Redirect("Login.aspx");
         }
 
         protected void btnAccount0_Click(object sender, EventArgs e)
         {
+            LoadNarration("View Account");
             Response.Redirect("ViewAccount.aspx");
         }
 
@@ -172,15 +205,20 @@ namespace CapstoneProject
                 }
             });
             await task;
+            File.Delete(Server.MapPath("/Audio/") + "speech.wav");
+            File.Copy(Server.MapPath("/Audio/") + fileName + ".wav", Server.MapPath("/Audio/") + "speech.wav");
+            audioSource.Src = "/Audio/" + fileName + ".wav";
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+            LoadNarration("Checkout");
             Response.Redirect("Checkout.aspx");
         }
 
         protected void btnCart_Click(object sender, EventArgs e)
         {
+            LoadNarration("See Cart");
             Response.Redirect("SeeCart.aspx");
         }
     }
