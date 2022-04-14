@@ -175,7 +175,7 @@
                     <asp:Button CssClass="tabLink" ID="btnLogin0" runat="server" OnClick="btnLogin_Click" Text="Login" UseSubmitBehavior="False" />
                     <asp:Button CssClass="tabLink" ID="btnSignUp0" runat="server" Text="Sign Up" UseSubmitBehavior="False" OnClick="btnSignUp_Click" />
                     <asp:Button CssClass="tabLink" ID="btnAccount0" runat="server" Text="View Account" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />
-                    <asp:Button CssClass="tabLink" ID="btnAdmin0" runat="server" Text="Admin" UseSubmitBehavior="False" OnClick="btnAccount0_Click" />
+                    <asp:Button CssClass="tabLink" ID="btnAdmin0" runat="server" Text="Admin" UseSubmitBehavior="False" OnClick="btnAdmin_Click" />
                     <asp:Button CssClass="tabLink" ID="btnLogOut" runat="server" Text="Log Out" UseSubmitBehavior="False" OnClick="btnLogOut_Click" />
                     <asp:Button CssClass="tabLink" ID="btnAbout" Text="About" runat="server" OnClick="btnAbout_Click" UseSubmitBehavior="False" />
                     <asp:Button CssClass="tabLink" ID="Contactbtn" runat="server" Text="Contact Us" OnClick="Contactbtn_Click" UseSubmitBehavior="False" />

@@ -20,7 +20,7 @@ namespace CapstoneProject
         string fileName = "home";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies.Count == 0)
+            if (Request.Cookies["LoginInfo"] == null)
             {
                 btnAdmin0.Visible = false;
                 btnAdmin0.Enabled = false;
@@ -191,6 +191,11 @@ namespace CapstoneProject
         {
             LoadNarration("View Account");
             Response.Redirect("ViewAccount.aspx");
+        }
+
+        protected void btnAdmin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Admin.aspx");
         }
 
         private async Task TTS()

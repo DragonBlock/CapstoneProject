@@ -19,12 +19,13 @@ namespace CapstoneProject
             accessor.ConnectToDatabase(Server.MapPath("/") + "FoodOrderingDB.mdb");
 
             gvOrders.DataSource = accessor.GetListOfOrders();
+            gvOrders.DataBind();
             gvMenu.DataSource = accessor.GetItemList(ItemType.Main);
+            gvMenu.DataBind();
             gvSides.DataSource = accessor.GetItemList(ItemType.Side);
+            gvSides.DataBind();
             gvDrinks.DataSource = accessor.GetItemList(ItemType.Drink);
+            gvDrinks.DataBind();
         }
-
-
-        
     }
 }
