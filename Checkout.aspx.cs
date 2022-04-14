@@ -17,7 +17,7 @@ namespace CapstoneProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies.Count == 0)
+            if (Request.Cookies["LoginInfo"] == null)
             {
                 btnLogin.Visible = true;
                 btnLogin.Enabled = true;
